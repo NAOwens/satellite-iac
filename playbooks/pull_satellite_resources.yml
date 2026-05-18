@@ -8,7 +8,8 @@
     sat_token: "{{ sat_admin_pat }}"
     
     # Git / GitHub Configuration
-    github_token_value: "{{ github_token }}"
+#    github_token_value: "{{ github_token }}"
+    github_token_value: "{{ git_token_variable }}"
     git_repo_url: "https://{{ github_token_value }}@github.com/NAOwens/satellite-iac.git"
     git_clone_dest: "/tmp/satellite-iac"
     export_dir: "{{ git_clone_dest }}/iac-sat-exports"
