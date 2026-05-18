@@ -259,10 +259,10 @@
           {% for org_result in sat_sync_results.results %}
             {% for repo in org_result.json.results %}
               {% set _ = sync_summary.append({
-                'repository_name': repo.name,
-                'product_name': repo.product.name,
-                'last_sync_status': repo.last_sync_status,
-                'last_sync_at': repo.updated_at
+                'repository_name': repo.name | default('Unknown'),
+                'product_name': repo.product.name | default('Unknown'),
+                'last_sync_status': repo.last_sync_status | default('Not Synced'),
+                'last_sync_at': repo.updated_at | default('Never')
               }) %}
             {% endfor %}
           {% endfor %}
