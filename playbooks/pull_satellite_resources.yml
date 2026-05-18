@@ -5,11 +5,11 @@
   gather_facts: false
   vars:
     sat_host: "https://sat.ofam.dev"
+    sat_username: "{{ sat_admin_user }}"
     sat_token: "{{ sat_admin_pat }}"
     
     # Git / GitHub Configuration
-#    github_token_value: "{{ github_token }}"
-    github_token_value: "{{ git_token_variable }}"
+    github_token_value: "{{ github_token_variable }}"
     git_repo_url: "https://NAOwens:{{ github_token_value }}@github.com/NAOwens/satellite-iac.git"
     git_clone_dest: "/tmp/satellite-iac"
     export_dir: "{{ git_clone_dest }}/iac-sat-exports"
@@ -20,9 +20,10 @@
     - name: Validate required extra_vars
       ansible.builtin.assert:
         that:
+          - sat_username is defined and sat_username != ''
           - sat_token is defined and sat_token != ''
           - github_token_value is defined and github_token_value != ''
-        fail_msg: "Both 'sat_admin_pat' and 'github_token' extra_vars must be provided!"
+        fail_msg: "The variables 'sat_admin_user', 'sat_admin_pat', and 'github_token' must be provided!"
 
     - name: Clone Satellite IaC repository from GitHub
       ansible.builtin.git:
@@ -30,6 +31,7 @@
         dest: "{{ git_clone_dest }}"
         version: "main"
         force: true
+      no_log: true
 
     - name: Ensure export directories exist in the cloned repo
       ansible.builtin.file:
@@ -51,8 +53,9 @@
       ansible.builtin.uri:
         url: "{{ sat_host }}/api/v2/organizations?per_page=1000"
         method: GET
-        headers:
-          Authorization: "Bearer {{ sat_token }}"
+        url_username: "{{ sat_username }}"
+        url_password: "{{ sat_token }}"
+        force_basic_auth: true
         validate_certs: "{{ validate_certs_flag }}"
         return_content: true
       register: sat_orgs
@@ -69,9 +72,10 @@
       ansible.builtin.uri:
         url: "{{ sat_host }}/api/v2/locations?per_page=1000"
         method: GET
-        headers:
-          Authorization: "Bearer {{ sat_token }}"
-        validate_certs: "{{ validate_certs_flag | default(false) }}"
+        url_username: "{{ sat_username }}"
+        url_password: "{{ sat_token }}"
+        force_basic_auth: true
+        validate_certs: "{{ validate_certs_flag }}"
         return_content: true
       register: sat_locs
 
@@ -87,8 +91,9 @@
       ansible.builtin.uri:
         url: "{{ sat_host }}/api/v2/domains?per_page=1000"
         method: GET
-        headers:
-          Authorization: "Bearer {{ sat_token }}"
+        url_username: "{{ sat_username }}"
+        url_password: "{{ sat_token }}"
+        force_basic_auth: true
         validate_certs: "{{ validate_certs_flag }}"
         return_content: true
       register: sat_domains
@@ -105,8 +110,9 @@
       ansible.builtin.uri:
         url: "{{ sat_host }}/api/v2/environments?per_page=1000"
         method: GET
-        headers:
-          Authorization: "Bearer {{ sat_token }}"
+        url_username: "{{ sat_username }}"
+        url_password: "{{ sat_token }}"
+        force_basic_auth: true
         validate_certs: "{{ validate_certs_flag }}"
         return_content: true
       register: sat_lces
@@ -123,8 +129,9 @@
       ansible.builtin.uri:
         url: "{{ sat_host }}/api/v2/hostgroups?per_page=1000"
         method: GET
-        headers:
-          Authorization: "Bearer {{ sat_token }}"
+        url_username: "{{ sat_username }}"
+        url_password: "{{ sat_token }}"
+        force_basic_auth: true
         validate_certs: "{{ validate_certs_flag }}"
         return_content: true
       register: sat_hostgroups
@@ -172,6 +179,7 @@
         chdir: "{{ git_clone_dest }}"
       when: git_status.stdout | length > 0
       changed_when: true
+      no_log: true
 
     - name: Display export summary
       ansible.builtin.debug:
