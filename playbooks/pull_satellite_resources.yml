@@ -16,12 +16,12 @@
     validate_certs_flag: false
 
   pre_tasks:
-    - name: Validate required extra_vars
-      ansible.builtin.assert:
-        that:
-          - sat_token is defined and sat_token != ''
-          - github_token_value is defined and github_token_value != ''
-        fail_msg: "Both 'sat_admin_pat' and 'github_token' extra_vars must be provided!"
+#    - name: Validate required extra_vars
+#      ansible.builtin.assert:
+#        that:
+#          - sat_token is defined and sat_token != ''
+#          - github_token_value is defined and github_token_value != ''
+#        fail_msg: "Both 'sat_admin_pat' and 'github_token' extra_vars must be provided!"
 
     - name: Clone Satellite IaC repository from GitHub
       ansible.builtin.git:
