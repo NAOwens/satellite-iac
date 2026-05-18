@@ -45,6 +45,7 @@
         - lifecycle_environments
         - hostgroups
         - activation_keys
+        - subscriptions
 
   tasks:
     # ---------------------------------------------------------
@@ -165,6 +166,28 @@
         content: "{{ sat_keys_results.results | map(attribute='json.results') | flatten | to_nice_yaml(indent=2) }}"
         dest: "{{ export_dir }}/activation_keys/activation_keys.yml"
 
+    # ---------------------------------------------------------
+    # 7. SUBSCRIPTIONS (Pools)
+    # ---------------------------------------------------------
+    - name: Fetch Subscriptions from Satellite
+      ansible.builtin.uri:
+        url: "{{ sat_host }}/katello/api/v2/organizations/{{ item.id }}/subscriptions?per_page=1000"
+        method: GET
+        url_username: "{{ sat_username }}"
+        url_password: "{{ sat_token }}"
+        force_basic_auth: true
+        validate_certs: "{{ validate_certs_flag }}"
+        return_content: true
+      register: sat_subs_results
+      loop: "{{ sat_orgs.json.results }}"
+      loop_control:
+        label: "{{ item.name }}"
+
+    - name: Save Subscriptions to YAML
+      ansible.builtin.copy:
+        content: "{{ sat_subs_results.results | map(attribute='json.results') | flatten | to_nice_yaml(indent=2) }}"
+        dest: "{{ export_dir }}/subscriptions/subscriptions.yml"
+
   post_tasks:
     # ---------------------------------------------------------
     # GIT COMMIT AND PUSH
@@ -216,4 +239,5 @@
           - Lifecycle Environments: {{ sat_lces.json.results | length }}
           - Hostgroups: {{ sat_hostgroups.json.results | length }}
           - Activation Keys: {{ sat_keys_results.results | map(attribute='json.results') | flatten | length }}
+          - Subscriptions: {{ sat_subs_results.results | map(attribute='json.results') | flatten | length }}
           - Git Push Status: {{ 'Changes pushed to GitHub' if git_status.stdout | length > 0 else 'No changes detected, nothing to push' }}
