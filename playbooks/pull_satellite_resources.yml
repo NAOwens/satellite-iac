@@ -48,6 +48,7 @@
         - subscriptions
         - redhat_repositories
         - products
+        - sync_status
 
   tasks:
     # ---------------------------------------------------------
@@ -234,6 +235,41 @@
         content: "{{ sat_product_results.results | map(attribute='json.results') | flatten | to_nice_yaml(indent=2) }}"
         dest: "{{ export_dir }}/products/products.yml"
 
+    # ---------------------------------------------------------
+    # 10. REPOSITORY SYNC STATUS (Katello API - Looped by Org)
+    # ---------------------------------------------------------
+    - name: Fetch Sync Status from Satellite
+      ansible.builtin.uri:
+        url: "{{ sat_host }}/katello/api/v2/repositories?per_page=1000&organization_id={{ item.id }}&enabled=true"
+        method: GET
+        url_username: "{{ sat_username }}"
+        url_password: "{{ sat_token }}"
+        force_basic_auth: true
+        validate_certs: "{{ validate_certs_flag }}"
+        return_content: true
+      register: sat_sync_results
+      loop: "{{ sat_orgs.json.results }}"
+      loop_control:
+        label: "{{ item.name }}"
+
+    - name: Save Sync Status to YAML
+      ansible.builtin.copy:
+        # We extract specific status fields to keep the YAML readable
+        content: |
+          {% set sync_summary = [] %}
+          {% for org_result in sat_sync_results.results %}
+            {% for repo in org_result.json.results %}
+              {% do sync_summary.append({
+                'repository_name': repo.name,
+                'product_name': repo.product.name,
+                'last_sync_status': repo.last_sync_status,
+                'last_sync_at': repo.updated_at
+              }) %}
+            {% endfor %}
+          {% endfor %}
+          {{ sync_summary | to_nice_yaml(indent=2) }}
+        dest: "{{ export_dir }}/sync_status/sync_status.yml"
+
   post_tasks:
     # ---------------------------------------------------------
     # GIT COMMIT AND PUSH
@@ -288,4 +324,5 @@
           - Subscriptions: {{ sat_subs_results.results | map(attribute='json.results') | flatten | length }}
           - Enabled Red Hat Repositories: {{ sat_repo_results.results | map(attribute='json.results') | flatten | length }}
           - Products: {{ sat_product_results.results | map(attribute='json.results') | flatten | length }}
+          - Sync Status Records: {{ sat_sync_results.results | map(attribute='json.results') | flatten | length }}
           - Git Push Status: {{ 'Changes pushed to GitHub' if git_status.stdout | length > 0 else 'No changes detected, nothing to push' }}
