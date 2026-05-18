@@ -1,0 +1,27 @@
+- account_number: 11542840
+  available: 1
+  consumed: 0
+  contract_number: null
+  cores: null
+  cp_id: 4028881e99457da1019945850356164d
+  end_date: 2027-08-15 03:59:59 UTC
+  id: 10
+  instance_multiplier: '2'
+  multi_entitlement: true
+  name: Employee SKU
+  product_host_count: 6
+  product_id: ES0113909
+  product_name: Employee SKU
+  quantity: 1
+  ram: null
+  sockets: 128
+  stacking_id: ES0113909
+  start_date: 2025-08-15 04:00:00 UTC
+  subscription_id: 4
+  support_level: Self-Support
+  type: NORMAL
+  unmapped_guest: false
+  upstream: true
+  upstream_pool_id: 2c94cf5c985bdf780198663c5da01fda
+  virt_only: false
+  virt_who: true
