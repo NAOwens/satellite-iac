@@ -50,6 +50,7 @@
         - products
         - sync_status
         - auth_sources
+        - users
 
   tasks:
     # ---------------------------------------------------------
@@ -288,6 +289,25 @@
       ansible.builtin.copy:
         content: "{{ sat_auth_sources.json.results | to_nice_yaml(indent=2) }}"
         dest: "{{ export_dir }}/auth_sources/auth_sources.yml"
+    
+    # ---------------------------------------------------------
+    # 12. USERS (Foreman API)
+    # ---------------------------------------------------------
+    - name: Fetch Users from Satellite
+      ansible.builtin.uri:
+        url: "{{ sat_host }}/api/v2/users?per_page=1000"
+        method: GET
+        url_username: "{{ sat_username }}"
+        url_password: "{{ sat_token }}"
+        force_basic_auth: true
+        validate_certs: "{{ validate_certs_flag }}"
+        return_content: true
+      register: sat_users
+
+    - name: Save Users to YAML
+      ansible.builtin.copy:
+        content: "{{ sat_users.json.results | to_nice_yaml(indent=2) }}"
+        dest: "{{ export_dir }}/users/users.yml"
 
   post_tasks:
     # ---------------------------------------------------------
@@ -345,4 +365,5 @@
           - Products: {{ sat_product_results.results | map(attribute='json.results') | flatten | length }}
           - Sync Status Records: {{ sat_sync_results.results | map(attribute='json.results') | flatten | length }}
           - Authentication Sources: {{ sat_auth_sources.json.results | length }}
+          - Users: {{ sat_users.json.results | length }}
           - Git Push Status: {{ 'Changes pushed to GitHub' if git_status.stdout | length > 0 else 'No changes detected, nothing to push' }}
