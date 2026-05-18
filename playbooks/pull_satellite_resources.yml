@@ -1,0 +1,185 @@
+---
+- name: Export Red Hat Satellite 6.18 Configuration to IaC
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    sat_host: "https://sat.ofam.dev"
+    sat_token: "{{ sat_admin_pat }}"
+    
+    # Git / GitHub Configuration
+    github_token_value: "{{ github_token }}"
+    git_repo_url: "https://{{ github_token_value }}@github.com/NAOwens/satellite-iac.git"
+    git_clone_dest: "/tmp/satellite-iac"
+    export_dir: "{{ git_clone_dest }}/iac-sat-exports"
+    
+    validate_certs_flag: false
+
+  pre_tasks:
+    - name: Validate required extra_vars
+      ansible.builtin.assert:
+        that:
+          - sat_token is defined and sat_token != ''
+          - github_token_value is defined and github_token_value != ''
+        fail_msg: "Both 'sat_admin_pat' and 'github_token' extra_vars must be provided!"
+
+    - name: Clone Satellite IaC repository from GitHub
+      ansible.builtin.git:
+        repo: "{{ git_repo_url }}"
+        dest: "{{ git_clone_dest }}"
+        version: "main"
+        force: true
+
+    - name: Ensure export directories exist in the cloned repo
+      ansible.builtin.file:
+        path: "{{ export_dir }}/{{ item }}"
+        state: directory
+        mode: '0755'
+      loop:
+        - organizations
+        - locations
+        - domains
+        - lifecycle_environments
+        - hostgroups
+
+  tasks:
+    # ---------------------------------------------------------
+    # 1. ORGANIZATIONS
+    # ---------------------------------------------------------
+    - name: Fetch Organizations from Satellite
+      ansible.builtin.uri:
+        url: "{{ sat_host }}/api/v2/organizations?per_page=1000"
+        method: GET
+        headers:
+          Authorization: "Bearer {{ sat_token }}"
+        validate_certs: "{{ validate_certs_flag }}"
+        return_content: true
+      register: sat_orgs
+
+    - name: Save Organizations to YAML
+      ansible.builtin.copy:
+        content: "{{ sat_orgs.json.results | to_nice_yaml(indent=2) }}"
+        dest: "{{ export_dir }}/organizations/organizations.yml"
+
+    # ---------------------------------------------------------
+    # 2. LOCATIONS
+    # ---------------------------------------------------------
+    - name: Fetch Locations from Satellite
+      ansible.builtin.uri:
+        url: "{{ sat_host }}/api/v2/locations?per_page=1000"
+        method: GET
+        headers:
+          Authorization: "Bearer {{ sat_token }}"
+        validate_certs: "{{ validate_certs_flag }}"
+        return_content: true
+      register: sat_locs
+
+    - name: Save Locations to YAML
+      ansible.builtin.copy:
+        content: "{{ sat_locs.json.results | to_nice_yaml(indent=2) }}"
+        dest: "{{ export_dir }}/locations/locations.yml"
+
+    # ---------------------------------------------------------
+    # 3. DOMAINS
+    # ---------------------------------------------------------
+    - name: Fetch Domains from Satellite
+      ansible.builtin.uri:
+        url: "{{ sat_host }}/api/v2/domains?per_page=1000"
+        method: GET
+        headers:
+          Authorization: "Bearer {{ sat_token }}"
+        validate_certs: "{{ validate_certs_flag }}"
+        return_content: true
+      register: sat_domains
+
+    - name: Save Domains to YAML
+      ansible.builtin.copy:
+        content: "{{ sat_domains.json.results | to_nice_yaml(indent=2) }}"
+        dest: "{{ export_dir }}/domains/domains.yml"
+
+    # ---------------------------------------------------------
+    # 4. LIFECYCLE ENVIRONMENTS
+    # ---------------------------------------------------------
+    - name: Fetch Lifecycle Environments from Satellite
+      ansible.builtin.uri:
+        url: "{{ sat_host }}/api/v2/environments?per_page=1000"
+        method: GET
+        headers:
+          Authorization: "Bearer {{ sat_token }}"
+        validate_certs: "{{ validate_certs_flag }}"
+        return_content: true
+      register: sat_lces
+
+    - name: Save Lifecycle Environments to YAML
+      ansible.builtin.copy:
+        content: "{{ sat_lces.json.results | to_nice_yaml(indent=2) }}"
+        dest: "{{ export_dir }}/lifecycle_environments/lifecycle_environments.yml"
+
+    # ---------------------------------------------------------
+    # 5. HOSTGROUPS
+    # ---------------------------------------------------------
+    - name: Fetch Hostgroups from Satellite
+      ansible.builtin.uri:
+        url: "{{ sat_host }}/api/v2/hostgroups?per_page=1000"
+        method: GET
+        headers:
+          Authorization: "Bearer {{ sat_token }}"
+        validate_certs: "{{ validate_certs_flag }}"
+        return_content: true
+      register: sat_hostgroups
+
+    - name: Save Hostgroups to YAML
+      ansible.builtin.copy:
+        content: "{{ sat_hostgroups.json.results | to_nice_yaml(indent=2) }}"
+        dest: "{{ export_dir }}/hostgroups/hostgroups.yml"
+
+  post_tasks:
+    # ---------------------------------------------------------
+    # GIT COMMIT AND PUSH
+    # ---------------------------------------------------------
+    - name: Check for changed files
+      ansible.builtin.command: git status --porcelain
+      args:
+        chdir: "{{ git_clone_dest }}"
+      register: git_status
+      changed_when: false
+
+    - name: Configure Git Identity
+      ansible.builtin.command: "{{ item }}"
+      args:
+        chdir: "{{ git_clone_dest }}"
+      loop:
+        - git config user.email "ansible-controller@ofam.dev"
+        - git config user.name "Automation Controller"
+      when: git_status.stdout | length > 0
+
+    - name: Add changes to Git
+      ansible.builtin.command: git add .
+      args:
+        chdir: "{{ git_clone_dest }}"
+      when: git_status.stdout | length > 0
+
+    - name: Commit changes to Git
+      ansible.builtin.command: git commit -m "Automated export of Satellite 6.18 configuration"
+      args:
+        chdir: "{{ git_clone_dest }}"
+      when: git_status.stdout | length > 0
+
+    - name: Push changes to GitHub
+      ansible.builtin.command: git push origin main
+      args:
+        chdir: "{{ git_clone_dest }}"
+      when: git_status.stdout | length > 0
+      changed_when: true
+
+    - name: Display export summary
+      ansible.builtin.debug:
+        msg: |
+          Satellite Export Complete!
+          Data saved and pushed to: https://github.com/NAOwens/satellite-iac
+          - Organizations: {{ sat_orgs.json.results | length }}
+          - Locations: {{ sat_locs.json.results | length }}
+          - Domains: {{ sat_domains.json.results | length }}
+          - Lifecycle Environments: {{ sat_lces.json.results | length }}
+          - Hostgroups: {{ sat_hostgroups.json.results | length }}
+          - Git Push Status: {{ 'Changes pushed to GitHub' if git_status.stdout | length > 0 else 'No changes detected, nothing to push' }}
