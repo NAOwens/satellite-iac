@@ -142,23 +142,27 @@
         content: "{{ sat_hostgroups.json.results | to_nice_yaml(indent=2) }}"
         dest: "{{ export_dir }}/hostgroups/hostgroups.yml"
 
-    # ---------------------------------------------------------
-    # 6. ACTIVATION KEYS
+    # 6. ACTIVATION KEYS (Updated to loop by Organization)
     # ---------------------------------------------------------
     - name: Fetch Activation Keys from Satellite
       ansible.builtin.uri:
-        url: "{{ sat_host }}/katello/api/v2/activation_keys?per_page=1000"
+        # We append &organization_id={{ item.id }} to the URL
+        url: "{{ sat_host }}/katello/api/v2/activation_keys?per_page=1000&organization_id={{ item.id }}"
         method: GET
         url_username: "{{ sat_username }}"
         url_password: "{{ sat_token }}"
         force_basic_auth: true
         validate_certs: "{{ validate_certs_flag }}"
         return_content: true
-      register: sat_keys
+      register: sat_keys_results
+      loop: "{{ sat_orgs.json.results }}"
+      loop_control:
+        label: "{{ item.name }}"
 
     - name: Save Activation Keys to YAML
       ansible.builtin.copy:
-        content: "{{ sat_keys.json.results | to_nice_yaml(indent=2) }}"
+        # We use map to extract only the results from the registered loop
+        content: "{{ sat_keys_results.results | map(attribute='json.results') | flatten | to_nice_yaml(indent=2) }}"
         dest: "{{ export_dir }}/activation_keys/activation_keys.yml"
 
   post_tasks:
