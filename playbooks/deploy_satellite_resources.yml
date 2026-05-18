@@ -1,0 +1,131 @@
+---
+- name: Deploy Satellite 6.19 Configuration from IaC
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    sat_host: "https://sat-new.ofam.dev"
+    sat_username: "{{ sat_admin_user }}"
+    sat_token: "{{ sat_admin_pat }}"
+    validate_certs_flag: false
+    import_dir: "../iac-sat-exports"
+
+  tasks:
+    # 1. CORE ARCHITECTURE (Orgs/Locs)
+    - name: Deploy Organizations
+      redhat.satellite.organization:
+        server_url: "{{ sat_host }}"
+        username: "{{ sat_username }}"
+        password: "{{ sat_token }}"
+        validate_certs: "{{ validate_certs_flag }}"
+        name: "{{ item.name }}"
+        label: "{{ item.label }}"
+        state: present
+      loop: "{{ lookup('file', import_dir + '/organizations/organizations.yml') | from_yaml }}"
+
+    - name: Deploy Locations
+      redhat.satellite.location:
+        server_url: "{{ sat_host }}"
+        username: "{{ sat_username }}"
+        password: "{{ sat_token }}"
+        validate_certs: "{{ validate_certs_flag }}"
+        name: "{{ item.name }}"
+        state: present
+      loop: "{{ lookup('file', import_dir + '/locations/locations.yml') | from_yaml }}"
+
+    # 2. IDENTITY & ACCESS (Auth Sources/Users)
+    - name: Deploy LDAP/AD Authentication Sources
+      redhat.satellite.auth_source_ldap:
+        server_url: "{{ sat_host }}"
+        username: "{{ sat_username }}"
+        password: "{{ sat_token }}"
+        validate_certs: "{{ validate_certs_flag }}"
+        name: "{{ item.name }}"
+        host: "{{ item.host }}"
+        port: "{{ item.port | default(389) }}"
+        base_dn: "{{ item.base_dn }}"
+        attr_login: "{{ item.attr_login }}"
+        state: present
+      loop: "{{ lookup('file', import_dir + '/auth_sources/auth_sources.yml') | from_yaml }}"
+      # Note: Bind password must be manually updated or handled via a secret vault.
+
+    - name: Deploy Users
+      redhat.satellite.user:
+        server_url: "{{ sat_host }}"
+        username: "{{ sat_username }}"
+        password: "{{ sat_token }}"
+        validate_certs: "{{ validate_certs_flag }}"
+        login: "{{ item.login }}"
+        firstname: "{{ item.firstname | default(omit) }}"
+        lastname: "{{ item.lastname | default(omit) }}"
+        mail: "{{ item.mail | default(omit) }}"
+        auth_source: "{{ item.auth_source_name | default(omit) }}"
+        state: present
+      loop: "{{ lookup('file', import_dir + '/users/users.yml') | from_yaml }}"
+      when: item.login != 'admin'
+
+    # 3. CONTENT STRUCTURE (Products/Repos)
+    - name: Deploy Custom Products
+      redhat.satellite.product:
+        server_url: "{{ sat_host }}"
+        username: "{{ sat_username }}"
+        password: "{{ sat_token }}"
+        validate_certs: "{{ validate_certs_flag }}"
+        name: "{{ item.name }}"
+        organization: "{{ item.organization.name }}"
+        label: "{{ item.label | default(omit) }}"
+        state: present
+      loop: "{{ lookup('file', import_dir + '/products/products.yml') | from_yaml }}"
+      when: item.cp_id is not defined # Only deploy custom products; RH products come from Manifest.
+
+    - name: Enable Red Hat Repositories
+      redhat.satellite.repository_set:
+        server_url: "{{ sat_host }}"
+        username: "{{ sat_username }}"
+        password: "{{ sat_token }}"
+        validate_certs: "{{ validate_certs_flag }}"
+        name: "{{ item.product.name }}"
+        organization: "{{ item.organization.name }}"
+        basearch: "{{ item.basearch | default(omit) }}"
+        releasever: "{{ item.releasever | default(omit) }}"
+        state: enabled
+      loop: "{{ lookup('file', import_dir + '/redhat_repositories/redhat_repositories.yml') | from_yaml }}"
+
+    # 4. ENVIRONMENT & PROVISIONING (LCEs/Hostgroups/Keys)
+    - name: Deploy Lifecycle Environments
+      redhat.satellite.lifecycle_environment:
+        server_url: "{{ sat_host }}"
+        username: "{{ sat_username }}"
+        password: "{{ sat_token }}"
+        validate_certs: "{{ validate_certs_flag }}"
+        name: "{{ item.name }}"
+        organization: "{{ item.organization.name }}"
+        prior: "{{ item.prior_lifecycle_environment.name | default(omit) }}"
+        state: present
+      loop: "{{ lookup('file', import_dir + '/lifecycle_environments/lifecycle_environments.yml') | from_yaml }}"
+      when: item.label != 'Library'
+
+    - name: Deploy Activation Keys
+      redhat.satellite.activation_key:
+        server_url: "{{ sat_host }}"
+        username: "{{ sat_username }}"
+        password: "{{ sat_token }}"
+        validate_certs: "{{ validate_certs_flag }}"
+        name: "{{ item.name }}"
+        organization: "{{ item.organization.name }}"
+        lifecycle_environment: "{{ item.environment.name | default(omit) }}"
+        content_view: "{{ item.content_view.name | default(omit) }}"
+        state: present
+      loop: "{{ lookup('file', import_dir + '/activation_keys/activation_keys.yml') | from_yaml }}"
+
+    - name: Deploy Hostgroups
+      redhat.satellite.hostgroup:
+        server_url: "{{ sat_host }}"
+        username: "{{ sat_username }}"
+        password: "{{ sat_token }}"
+        validate_certs: "{{ validate_certs_flag }}"
+        name: "{{ item.name }}"
+        organization: "{{ item.organizations[0].name | default(omit) }}"
+        location: "{{ item.locations[0].name | default(omit) }}"
+        state: present
+      loop: "{{ lookup('file', import_dir + '/hostgroups/hostgroups.yml') | from_yaml }}"
