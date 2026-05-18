@@ -215,5 +215,5 @@
           - Domains: {{ sat_domains.json.results | length }}
           - Lifecycle Environments: {{ sat_lces.json.results | length }}
           - Hostgroups: {{ sat_hostgroups.json.results | length }}
-          - Activation Keys: {{ sat_keys.json.results | length }}
+          - Activation Keys: {{ sat_keys_results.results | map(attribute='json.results') | flatten | length }}
           - Git Push Status: {{ 'Changes pushed to GitHub' if git_status.stdout | length > 0 else 'No changes detected, nothing to push' }}
