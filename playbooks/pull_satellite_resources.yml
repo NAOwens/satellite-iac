@@ -108,7 +108,7 @@
     # ---------------------------------------------------------
     - name: Fetch Lifecycle Environments from Satellite
       ansible.builtin.uri:
-        url: "{{ sat_host }}/api/v2/environments?per_page=1000"
+        url: "{{ sat_host }}/katello/api/v2/environments?per_page=1000"
         method: GET
         url_username: "{{ sat_username }}"
         url_password: "{{ sat_token }}"
