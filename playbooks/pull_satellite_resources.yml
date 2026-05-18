@@ -254,12 +254,11 @@
 
     - name: Save Sync Status to YAML
       ansible.builtin.copy:
-        # We extract specific status fields to keep the YAML readable
         content: |
           {% set sync_summary = [] %}
           {% for org_result in sat_sync_results.results %}
             {% for repo in org_result.json.results %}
-              {% do sync_summary.append({
+              {% set _ = sync_summary.append({
                 'repository_name': repo.name,
                 'product_name': repo.product.name,
                 'last_sync_status': repo.last_sync_status,
