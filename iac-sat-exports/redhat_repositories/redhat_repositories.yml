@@ -1,0 +1,1308 @@
+- arch: noarch
+  backend_identifier: 890051eb-f898-4acf-897e-3f4aa6c77bc6
+  container_repository_name: null
+  content_counts:
+    erratum: 47
+    module_stream: 0
+    package_group: 0
+    rpm: 551
+    srpm: 0
+  content_id: '20236'
+  content_label: ansible-automation-platform-2.4-for-rhel-9-x86_64-rpms
+  content_type: yum
+  content_view:
+    id: 1
+    name: Default Organization View
+  content_view_version:
+    content_view_id: 1
+    id: 1
+    name: Default Organization View 1.0
+  content_view_versions:
+  - content_view_id: 10
+    content_view_name: AAP_24
+    id: 62
+    version: '6.0'
+  - content_view_id: 11
+    content_view_name: RHEL9_AAP24_CCV
+    id: 63
+    version: '8.0'
+  description: null
+  docker_upstream_name: null
+  filters: []
+  full_gpg_key_path: null
+  full_path: https://sat.ofam.dev/pulp/content/My_Organization/Library/content/dist/layered/rhel9/x86_64/ansible-automation-platform/2.4/os/
+  generic_remote_options: null
+  id: 69
+  kt_environment:
+    id: 1
+    name: Library
+  label: Red_Hat_Ansible_Automation_Platform_2_4_for_RHEL_9_x86_64_RPMs
+  last_sync: null
+  last_sync_words: 8 months
+  library_instance_id: null
+  major: null
+  minor: null
+  mirroring_policy: mirror_complete
+  name: Red Hat Ansible Automation Platform 2.4 for RHEL 9 x86_64 RPMs
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  os_versions: null
+  product:
+    cp_id: '480'
+    id: 17
+    name: Red Hat Ansible Automation Platform
+    orphaned: false
+    redhat: true
+    sync_plan: null
+  publication_href: /pulp/api/v3/publications/rpm/rpm/019945b7-1a2e-742c-9523-03201283bfe8/
+  relative_path: My_Organization/Library/content/dist/layered/rhel9/x86_64/ansible-automation-platform/2.4/os
+  remote_href: /pulp/api/v3/remotes/rpm/rpm/f13010ca-12cf-4b07-995b-1f45c7dd6f0b/
+  url: https://cdn.redhat.com/content/dist/layered/rhel9/x86_64/ansible-automation-platform/2.4/os
+  version_href: /pulp/api/v3/repositories/rpm/rpm/f511c1cc-0288-4a02-9d10-8f02c86da988/versions/6/
+- arch: noarch
+  backend_identifier: a4b7f0a6-db88-45ca-8211-8df93ad516f8
+  container_repository_name: null
+  content_counts:
+    erratum: 0
+    module_stream: 0
+    package_group: 0
+    rpm: 0
+    srpm: 0
+  content_id: '20417'
+  content_label: ansible-automation-platform-2.5-for-rhel-9-x86_64-rpms
+  content_type: yum
+  content_view:
+    id: 1
+    name: Default Organization View
+  content_view_version:
+    content_view_id: 1
+    id: 1
+    name: Default Organization View 1.0
+  content_view_versions:
+  - content_view_id: 19
+    content_view_name: AAP_25
+    id: 64
+    version: '1.0'
+  - content_view_id: 20
+    content_view_name: RHEL9_AAP25_CCV
+    id: 65
+    version: '1.0'
+  description: null
+  docker_upstream_name: null
+  filters: []
+  full_gpg_key_path: null
+  full_path: https://sat.ofam.dev/pulp/content/My_Organization/Library/content/dist/layered/rhel9/x86_64/ansible-automation-platform/2.5/os/
+  generic_remote_options: null
+  id: 291
+  kt_environment:
+    id: 1
+    name: Library
+  label: Red_Hat_Ansible_Automation_Platform_2_5_for_RHEL_9_x86_64_RPMs
+  last_sync: null
+  last_sync_words: null
+  library_instance_id: null
+  major: null
+  minor: null
+  mirroring_policy: mirror_complete
+  name: Red Hat Ansible Automation Platform 2.5 for RHEL 9 x86_64 RPMs
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  os_versions: null
+  product:
+    cp_id: '480'
+    id: 17
+    name: Red Hat Ansible Automation Platform
+    orphaned: false
+    redhat: true
+    sync_plan: null
+  publication_href: /pulp/api/v3/publications/rpm/rpm/019d1de6-4d5e-7000-9217-ebcd2a5ba36c/
+  relative_path: My_Organization/Library/content/dist/layered/rhel9/x86_64/ansible-automation-platform/2.5/os
+  remote_href: /pulp/api/v3/remotes/rpm/rpm/019d1de6-4b32-7074-894c-13ceafe4ae5e/
+  url: https://cdn.redhat.com/content/dist/layered/rhel9/x86_64/ansible-automation-platform/2.5/os
+  version_href: /pulp/api/v3/repositories/rpm/rpm/019d1de6-4bfc-70f0-9d95-a9bade3f1199/versions/0/
+- arch: noarch
+  backend_identifier: 17aa7d53-eadf-4e7a-8104-1b72efb5cc5d
+  container_repository_name: null
+  content_counts:
+    erratum: 2436
+    module_stream: 0
+    package_group: 59
+    rpm: 9024
+    srpm: 0
+  content_id: '21548'
+  content_label: rhel-10-for-x86_64-appstream-rpms
+  content_type: yum
+  content_view:
+    id: 1
+    name: Default Organization View
+  content_view_version:
+    content_view_id: 1
+    id: 1
+    name: Default Organization View 1.0
+  content_view_versions:
+  - content_view_id: 18
+    content_view_name: RHEL10_CV
+    id: 57
+    version: '2.0'
+  description: null
+  docker_upstream_name: null
+  filters: []
+  full_gpg_key_path: null
+  full_path: https://sat.ofam.dev/pulp/content/My_Organization/Library/content/dist/rhel10/10/x86_64/appstream/os/
+  generic_remote_options: null
+  id: 228
+  kt_environment:
+    id: 1
+    name: Library
+  label: Red_Hat_Enterprise_Linux_10_for_x86_64_-_AppStream_RPMs_10
+  last_sync: null
+  last_sync_words: 2 months
+  library_instance_id: null
+  major: 10
+  minor: '10'
+  mirroring_policy: mirror_complete
+  name: Red Hat Enterprise Linux 10 for x86_64 - AppStream RPMs 10
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  os_versions: null
+  product:
+    cp_id: '479'
+    id: 6
+    name: Red Hat Enterprise Linux for x86_64
+    orphaned: false
+    redhat: true
+    sync_plan: null
+  publication_href: /pulp/api/v3/publications/rpm/rpm/019cfeaf-8c49-7443-b99d-cde27c272a76/
+  relative_path: My_Organization/Library/content/dist/rhel10/10/x86_64/appstream/os
+  remote_href: /pulp/api/v3/remotes/rpm/rpm/019945bf-68f5-700a-8b68-e420394cdcff/
+  url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os
+  version_href: /pulp/api/v3/repositories/rpm/rpm/019945bf-69b5-7f8b-9b75-e1eb7dc324fe/versions/2/
+- arch: noarch
+  backend_identifier: ae4e4c87-3f4d-444f-b3c1-b96cd88ce9a8
+  container_repository_name: null
+  content_counts:
+    erratum: 738
+    module_stream: 0
+    package_group: 34
+    rpm: 3956
+    srpm: 0
+  content_id: '21542'
+  content_label: rhel-10-for-x86_64-baseos-rpms
+  content_type: yum
+  content_view:
+    id: 1
+    name: Default Organization View
+  content_view_version:
+    content_view_id: 1
+    id: 1
+    name: Default Organization View 1.0
+  content_view_versions:
+  - content_view_id: 18
+    content_view_name: RHEL10_CV
+    id: 57
+    version: '2.0'
+  description: null
+  docker_upstream_name: null
+  filters: []
+  full_gpg_key_path: null
+  full_path: https://sat.ofam.dev/pulp/content/My_Organization/Library/content/dist/rhel10/10/x86_64/baseos/os/
+  generic_remote_options: null
+  id: 229
+  kt_environment:
+    id: 1
+    name: Library
+  label: Red_Hat_Enterprise_Linux_10_for_x86_64_-_BaseOS_RPMs_10
+  last_sync: null
+  last_sync_words: 2 months
+  library_instance_id: null
+  major: 10
+  minor: '10'
+  mirroring_policy: mirror_complete
+  name: Red Hat Enterprise Linux 10 for x86_64 - BaseOS RPMs 10
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  os_versions: null
+  product:
+    cp_id: '479'
+    id: 6
+    name: Red Hat Enterprise Linux for x86_64
+    orphaned: false
+    redhat: true
+    sync_plan: null
+  publication_href: /pulp/api/v3/publications/rpm/rpm/019cfeaf-7425-7087-8750-122e56dc420e/
+  relative_path: My_Organization/Library/content/dist/rhel10/10/x86_64/baseos/os
+  remote_href: /pulp/api/v3/remotes/rpm/rpm/019945bf-b95f-7d7d-a5b1-64cb915655eb/
+  url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os
+  version_href: /pulp/api/v3/repositories/rpm/rpm/019945bf-ba06-7f05-8bb0-85fe1818bd1f/versions/2/
+- arch: x86_64
+  backend_identifier: 31b3c8de-e518-4fcb-ac31-f1966b58a01f
+  container_repository_name: null
+  content_counts:
+    erratum: 57
+    module_stream: 0
+    package_group: 0
+    rpm: 105
+    srpm: 0
+  content_id: '3026'
+  content_label: rhel-6-server-extras-rpms
+  content_type: yum
+  content_view:
+    id: 1
+    name: Default Organization View
+  content_view_version:
+    content_view_id: 1
+    id: 1
+    name: Default Organization View 1.0
+  content_view_versions:
+  - content_view_id: 9
+    content_view_name: RHEL6_CV
+    id: 8
+    version: '1.0'
+  description: null
+  docker_upstream_name: null
+  filters: []
+  full_gpg_key_path: null
+  full_path: https://sat.ofam.dev/pulp/content/My_Organization/Library/content/dist/rhel/server/6/6Server/x86_64/extras/os/
+  generic_remote_options: null
+  id: 57
+  kt_environment:
+    id: 1
+    name: Library
+  label: Red_Hat_Enterprise_Linux_6_Server_-_Extras_RPMs_x86_64
+  last_sync: null
+  last_sync_words: over 2 years
+  library_instance_id: null
+  major: null
+  minor: null
+  mirroring_policy: mirror_complete
+  name: Red Hat Enterprise Linux 6 Server - Extras RPMs x86_64
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  os_versions: null
+  product:
+    cp_id: '69'
+    id: 15
+    name: Red Hat Enterprise Linux Server
+    orphaned: false
+    redhat: true
+    sync_plan: null
+  publication_href: /pulp/api/v3/publications/rpm/rpm/1eb4fa29-727a-44e7-bc66-9e279fb45e3a/
+  relative_path: My_Organization/Library/content/dist/rhel/server/6/6Server/x86_64/extras/os
+  remote_href: /pulp/api/v3/remotes/rpm/rpm/79e45d12-803f-416b-8fcf-5cfb40408852/
+  url: https://cdn.redhat.com/content/dist/rhel/server/6/6Server/x86_64/extras/os
+  version_href: /pulp/api/v3/repositories/rpm/rpm/71d18730-a20d-4afa-9fcf-7ddd70802166/versions/1/
+- arch: x86_64
+  backend_identifier: 8927cb32-ace5-4d39-a4ac-6f8ea6a8cb85
+  container_repository_name: null
+  content_counts:
+    erratum: 2444
+    module_stream: 0
+    package_group: 2
+    rpm: 12262
+    srpm: 0
+  content_id: '166'
+  content_label: rhel-6-server-optional-rpms
+  content_type: yum
+  content_view:
+    id: 1
+    name: Default Organization View
+  content_view_version:
+    content_view_id: 1
+    id: 1
+    name: Default Organization View 1.0
+  content_view_versions:
+  - content_view_id: 9
+    content_view_name: RHEL6_CV
+    id: 8
+    version: '1.0'
+  description: null
+  docker_upstream_name: null
+  filters: []
+  full_gpg_key_path: null
+  full_path: https://sat.ofam.dev/pulp/content/My_Organization/Library/content/dist/rhel/server/6/6Server/x86_64/optional/os/
+  generic_remote_options: null
+  id: 58
+  kt_environment:
+    id: 1
+    name: Library
+  label: Red_Hat_Enterprise_Linux_6_Server_-_Optional_RPMs_x86_64_6Server
+  last_sync: null
+  last_sync_words: about 2 years
+  library_instance_id: null
+  major: 6
+  minor: 6Server
+  mirroring_policy: mirror_complete
+  name: Red Hat Enterprise Linux 6 Server - Optional RPMs x86_64 6Server
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  os_versions: null
+  product:
+    cp_id: '69'
+    id: 15
+    name: Red Hat Enterprise Linux Server
+    orphaned: false
+    redhat: true
+    sync_plan: null
+  publication_href: /pulp/api/v3/publications/rpm/rpm/dfc3360d-5c2c-43ce-b529-86fb33b8f82a/
+  relative_path: My_Organization/Library/content/dist/rhel/server/6/6Server/x86_64/optional/os
+  remote_href: /pulp/api/v3/remotes/rpm/rpm/0d2f234c-b04c-48ed-8e2f-b919978ddf91/
+  url: https://cdn.redhat.com/content/dist/rhel/server/6/6Server/x86_64/optional/os
+  version_href: /pulp/api/v3/repositories/rpm/rpm/2ba762ba-0b4c-4ef6-bd92-62b9c64276ba/versions/2/
+- arch: x86_64
+  backend_identifier: 5f089011-8753-4ded-bff3-d449008d7f31
+  container_repository_name: null
+  content_counts:
+    erratum: 4435
+    module_stream: 0
+    package_group: 202
+    rpm: 21195
+    srpm: 0
+  content_id: '168'
+  content_label: rhel-6-server-rpms
+  content_type: yum
+  content_view:
+    id: 1
+    name: Default Organization View
+  content_view_version:
+    content_view_id: 1
+    id: 1
+    name: Default Organization View 1.0
+  content_view_versions:
+  - content_view_id: 9
+    content_view_name: RHEL6_CV
+    id: 8
+    version: '1.0'
+  description: null
+  docker_upstream_name: null
+  filters: []
+  full_gpg_key_path: null
+  full_path: https://sat.ofam.dev/pulp/content/My_Organization/Library/content/dist/rhel/server/6/6Server/x86_64/os/
+  generic_remote_options: null
+  id: 59
+  kt_environment:
+    id: 1
+    name: Library
+  label: Red_Hat_Enterprise_Linux_6_Server_RPMs_x86_64_6Server
+  last_sync: null
+  last_sync_words: about 2 years
+  library_instance_id: null
+  major: 6
+  minor: 6Server
+  mirroring_policy: mirror_complete
+  name: Red Hat Enterprise Linux 6 Server RPMs x86_64 6Server
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  os_versions: null
+  product:
+    cp_id: '69'
+    id: 15
+    name: Red Hat Enterprise Linux Server
+    orphaned: false
+    redhat: true
+    sync_plan: null
+  publication_href: /pulp/api/v3/publications/rpm/rpm/88950386-fcbf-4224-aeb9-1e04056654c4/
+  relative_path: My_Organization/Library/content/dist/rhel/server/6/6Server/x86_64/os
+  remote_href: /pulp/api/v3/remotes/rpm/rpm/63bab046-cff7-4256-9e6e-f779821e69f7/
+  url: https://cdn.redhat.com/content/dist/rhel/server/6/6Server/x86_64/os
+  version_href: /pulp/api/v3/repositories/rpm/rpm/01bd86a0-6249-43e5-a933-2e189731ce68/versions/2/
+- arch: x86_64
+  backend_identifier: cb4878e3-98d2-42bb-b673-7abfbf9e42ff
+  container_repository_name: null
+  content_counts:
+    erratum: 559
+    module_stream: 0
+    package_group: 0
+    rpm: 1491
+    srpm: 0
+  content_id: '3030'
+  content_label: rhel-7-server-extras-rpms
+  content_type: yum
+  content_view:
+    id: 1
+    name: Default Organization View
+  content_view_version:
+    content_view_id: 1
+    id: 1
+    name: Default Organization View 1.0
+  content_view_versions:
+  - content_view_id: 3
+    content_view_name: RHEL7_CV
+    id: 53
+    version: '5.0'
+  - content_view_id: 13
+    content_view_name: RHEL7_LEAPP_CCV
+    id: 54
+    version: '3.0'
+  description: null
+  docker_upstream_name: null
+  filters: []
+  full_gpg_key_path: null
+  full_path: https://sat.ofam.dev/pulp/content/My_Organization/Library/content/dist/rhel/server/7/7Server/x86_64/extras/os/
+  generic_remote_options: null
+  id: 1
+  kt_environment:
+    id: 1
+    name: Library
+  label: Red_Hat_Enterprise_Linux_7_Server_-_Extras_RPMs_x86_64
+  last_sync: null
+  last_sync_words: about 1 year
+  library_instance_id: null
+  major: null
+  minor: null
+  mirroring_policy: mirror_complete
+  name: Red Hat Enterprise Linux 7 Server - Extras RPMs x86_64
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  os_versions: null
+  product:
+    cp_id: '69'
+    id: 15
+    name: Red Hat Enterprise Linux Server
+    orphaned: false
+    redhat: true
+    sync_plan: null
+  publication_href: /pulp/api/v3/publications/rpm/rpm/0196b204-4222-7b81-b877-4fdee3949f82/
+  relative_path: My_Organization/Library/content/dist/rhel/server/7/7Server/x86_64/extras/os
+  remote_href: /pulp/api/v3/remotes/rpm/rpm/071c3088-bb5b-4743-a180-ba1fdd5d6a60/
+  url: https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/extras/os
+  version_href: /pulp/api/v3/repositories/rpm/rpm/a115f029-0723-4728-a99a-de7beca7119c/versions/5/
+- arch: x86_64
+  backend_identifier: 8371308d-0ca8-43f7-97a8-2b843e0269de
+  container_repository_name: null
+  content_counts:
+    erratum: 5281
+    module_stream: 0
+    package_group: 76
+    rpm: 34473
+    srpm: 0
+  content_id: '2456'
+  content_label: rhel-7-server-rpms
+  content_type: yum
+  content_view:
+    id: 1
+    name: Default Organization View
+  content_view_version:
+    content_view_id: 1
+    id: 1
+    name: Default Organization View 1.0
+  content_view_versions:
+  - content_view_id: 3
+    content_view_name: RHEL7_CV
+    id: 53
+    version: '5.0'
+  - content_view_id: 13
+    content_view_name: RHEL7_LEAPP_CCV
+    id: 54
+    version: '3.0'
+  description: null
+  docker_upstream_name: null
+  filters: []
+  full_gpg_key_path: null
+  full_path: https://sat.ofam.dev/pulp/content/My_Organization/Library/content/dist/rhel/server/7/7Server/x86_64/os/
+  generic_remote_options: null
+  id: 2
+  kt_environment:
+    id: 1
+    name: Library
+  label: Red_Hat_Enterprise_Linux_7_Server_RPMs_x86_64_7Server
+  last_sync: null
+  last_sync_words: almost 2 years
+  library_instance_id: null
+  major: 7
+  minor: 7Server
+  mirroring_policy: mirror_complete
+  name: Red Hat Enterprise Linux 7 Server RPMs x86_64 7Server
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  os_versions: null
+  product:
+    cp_id: '69'
+    id: 15
+    name: Red Hat Enterprise Linux Server
+    orphaned: false
+    redhat: true
+    sync_plan: null
+  publication_href: /pulp/api/v3/publications/rpm/rpm/01902c4b-169f-7048-bdc4-b534095bf061/
+  relative_path: My_Organization/Library/content/dist/rhel/server/7/7Server/x86_64/os
+  remote_href: /pulp/api/v3/remotes/rpm/rpm/74a9a523-f907-4a87-b90d-c87fae70e804/
+  url: https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os
+  version_href: /pulp/api/v3/repositories/rpm/rpm/0423fcfc-95c0-4f93-8ed8-f570f5fe09e1/versions/4/
+- arch: noarch
+  backend_identifier: 47189139-e57f-4770-86bd-8f36d656df23
+  container_repository_name: null
+  content_counts:
+    erratum: 4524
+    module_stream: 1009
+    package_group: 59
+    rpm: 45063
+    srpm: 0
+  content_id: '7441'
+  content_label: rhel-8-for-x86_64-appstream-rpms
+  content_type: yum
+  content_view:
+    id: 1
+    name: Default Organization View
+  content_view_version:
+    content_view_id: 1
+    id: 1
+    name: Default Organization View 1.0
+  content_view_versions:
+  - content_view_id: 2
+    content_view_name: RHEL8_CV
+    id: 55
+    version: '9.0'
+  - content_view_id: 15
+    content_view_name: RHEL8_LEAPP_CCV
+    id: 56
+    version: '7.0'
+  - content_view_id: 2
+    content_view_name: RHEL8_CV
+    id: 60
+    version: '10.0'
+  description: null
+  docker_upstream_name: null
+  filters: []
+  full_gpg_key_path: null
+  full_path: https://sat.ofam.dev/pulp/content/My_Organization/Library/content/dist/rhel8/8/x86_64/appstream/os/
+  generic_remote_options: null
+  id: 3
+  kt_environment:
+    id: 1
+    name: Library
+  label: Red_Hat_Enterprise_Linux_8_for_x86_64_-_AppStream_RPMs_8
+  last_sync: null
+  last_sync_words: 2 months
+  library_instance_id: null
+  major: 8
+  minor: '8'
+  mirroring_policy: mirror_complete
+  name: Red Hat Enterprise Linux 8 for x86_64 - AppStream RPMs 8
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  os_versions: null
+  product:
+    cp_id: '479'
+    id: 6
+    name: Red Hat Enterprise Linux for x86_64
+    orphaned: false
+    redhat: true
+    sync_plan: null
+  publication_href: /pulp/api/v3/publications/rpm/rpm/019cfeb4-4e40-7eb1-9ec0-60dd6df8bcfe/
+  relative_path: My_Organization/Library/content/dist/rhel8/8/x86_64/appstream/os
+  remote_href: /pulp/api/v3/remotes/rpm/rpm/1a57f188-c1ac-464b-85f7-6e3b6e48466f/
+  url: https://cdn.redhat.com/content/dist/rhel8/8/x86_64/appstream/os
+  version_href: /pulp/api/v3/repositories/rpm/rpm/2dfd6a7d-079e-45bd-bb38-9e9aed0011cd/versions/9/
+- arch: noarch
+  backend_identifier: 686d7ec9-34c5-42b3-8661-9afa4af49264
+  container_repository_name: null
+  content_counts:
+    erratum: 4307
+    module_stream: 949
+    package_group: 59
+    rpm: 43014
+    srpm: 0
+  content_id: '7441'
+  content_label: rhel-8-for-x86_64-appstream-rpms
+  content_type: yum
+  content_view:
+    id: 1
+    name: Default Organization View
+  content_view_version:
+    content_view_id: 1
+    id: 1
+    name: Default Organization View 1.0
+  content_view_versions:
+  - content_view_id: 12
+    content_view_name: RHEL810_CV
+    id: 28
+    version: '1.0'
+  - content_view_id: 13
+    content_view_name: RHEL7_LEAPP_CCV
+    id: 54
+    version: '3.0'
+  description: null
+  docker_upstream_name: null
+  filters: []
+  full_gpg_key_path: null
+  full_path: https://sat.ofam.dev/pulp/content/My_Organization/Library/content/dist/rhel8/8.10/x86_64/appstream/os/
+  generic_remote_options: null
+  id: 135
+  kt_environment:
+    id: 1
+    name: Library
+  label: Red_Hat_Enterprise_Linux_8_for_x86_64_-_AppStream_RPMs_8_10
+  last_sync: null
+  last_sync_words: 8 months
+  library_instance_id: null
+  major: 8
+  minor: '8.10'
+  mirroring_policy: mirror_complete
+  name: Red Hat Enterprise Linux 8 for x86_64 - AppStream RPMs 8.10
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  os_versions: null
+  product:
+    cp_id: '479'
+    id: 6
+    name: Red Hat Enterprise Linux for x86_64
+    orphaned: false
+    redhat: true
+    sync_plan: null
+  publication_href: /pulp/api/v3/publications/rpm/rpm/019945bb-81de-7cd6-bc40-6e80c8f09be3/
+  relative_path: My_Organization/Library/content/dist/rhel8/8.10/x86_64/appstream/os
+  remote_href: /pulp/api/v3/remotes/rpm/rpm/01903cb2-34a2-7d50-92ad-cefcb8f4fa6c/
+  url: https://cdn.redhat.com/content/dist/rhel8/8.10/x86_64/appstream/os
+  version_href: /pulp/api/v3/repositories/rpm/rpm/01903cb2-3597-7d94-9d48-423a70c7218a/versions/3/
+- arch: noarch
+  backend_identifier: 852de58e-8cf4-4171-8e8c-e2837936c248
+  container_repository_name: null
+  content_counts:
+    erratum: 3199
+    module_stream: 717
+    package_group: 59
+    rpm: 32874
+    srpm: 0
+  content_id: '7441'
+  content_label: rhel-8-for-x86_64-appstream-rpms
+  content_type: yum
+  content_view:
+    id: 1
+    name: Default Organization View
+  content_view_version:
+    content_view_id: 1
+    id: 1
+    name: Default Organization View 1.0
+  content_view_versions: []
+  description: null
+  docker_upstream_name: null
+  filters: []
+  full_gpg_key_path: null
+  full_path: https://sat.ofam.dev/pulp/content/My_Organization/Library/content/dist/rhel8/8.8/x86_64/appstream/os/
+  generic_remote_options: null
+  id: 37
+  kt_environment:
+    id: 1
+    name: Library
+  label: Red_Hat_Enterprise_Linux_8_for_x86_64_-_AppStream_RPMs_8_8
+  last_sync: null
+  last_sync_words: about 2 years
+  library_instance_id: null
+  major: 8
+  minor: '8.8'
+  mirroring_policy: mirror_complete
+  name: Red Hat Enterprise Linux 8 for x86_64 - AppStream RPMs 8.8
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  os_versions: null
+  product:
+    cp_id: '479'
+    id: 6
+    name: Red Hat Enterprise Linux for x86_64
+    orphaned: false
+    redhat: true
+    sync_plan: null
+  publication_href: /pulp/api/v3/publications/rpm/rpm/6c997f79-ae1d-409f-b3a6-3ab47f31126d/
+  relative_path: My_Organization/Library/content/dist/rhel8/8.8/x86_64/appstream/os
+  remote_href: /pulp/api/v3/remotes/rpm/rpm/3a84ebb4-55b0-457e-aa5d-1222f25c47c0/
+  url: https://cdn.redhat.com/content/dist/rhel8/8.8/x86_64/appstream/os
+  version_href: /pulp/api/v3/repositories/rpm/rpm/3b5d7bdf-ff60-4138-b40b-cc45b3d167fd/versions/3/
+- arch: noarch
+  backend_identifier: aaf2936d-9d7c-4ffb-96ed-e2646485df2a
+  container_repository_name: null
+  content_counts:
+    erratum: 2425
+    module_stream: 0
+    package_group: 35
+    rpm: 22642
+    srpm: 0
+  content_id: '7416'
+  content_label: rhel-8-for-x86_64-baseos-rpms
+  content_type: yum
+  content_view:
+    id: 1
+    name: Default Organization View
+  content_view_version:
+    content_view_id: 1
+    id: 1
+    name: Default Organization View 1.0
+  content_view_versions:
+  - content_view_id: 2
+    content_view_name: RHEL8_CV
+    id: 55
+    version: '9.0'
+  - content_view_id: 15
+    content_view_name: RHEL8_LEAPP_CCV
+    id: 56
+    version: '7.0'
+  - content_view_id: 2
+    content_view_name: RHEL8_CV
+    id: 60
+    version: '10.0'
+  description: null
+  docker_upstream_name: null
+  filters: []
+  full_gpg_key_path: null
+  full_path: https://sat.ofam.dev/pulp/content/My_Organization/Library/content/dist/rhel8/8/x86_64/baseos/os/
+  generic_remote_options: null
+  id: 4
+  kt_environment:
+    id: 1
+    name: Library
+  label: Red_Hat_Enterprise_Linux_8_for_x86_64_-_BaseOS_RPMs_8
+  last_sync: null
+  last_sync_words: 2 months
+  library_instance_id: null
+  major: 8
+  minor: '8'
+  mirroring_policy: mirror_complete
+  name: Red Hat Enterprise Linux 8 for x86_64 - BaseOS RPMs 8
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  os_versions: null
+  product:
+    cp_id: '479'
+    id: 6
+    name: Red Hat Enterprise Linux for x86_64
+    orphaned: false
+    redhat: true
+    sync_plan: null
+  publication_href: /pulp/api/v3/publications/rpm/rpm/019cfeb9-8bd7-7900-ba50-42784eb1cad0/
+  relative_path: My_Organization/Library/content/dist/rhel8/8/x86_64/baseos/os
+  remote_href: /pulp/api/v3/remotes/rpm/rpm/21dd558b-675f-42ba-9c65-4ccd13076f42/
+  url: https://cdn.redhat.com/content/dist/rhel8/8/x86_64/baseos/os
+  version_href: /pulp/api/v3/repositories/rpm/rpm/218adf26-71ae-4fba-bdab-535c0c5b419d/versions/9/
+- arch: noarch
+  backend_identifier: b4462ffa-6190-477c-ba55-e3e530ba6317
+  container_repository_name: null
+  content_counts:
+    erratum: 2317
+    module_stream: 0
+    package_group: 35
+    rpm: 21213
+    srpm: 0
+  content_id: '7416'
+  content_label: rhel-8-for-x86_64-baseos-rpms
+  content_type: yum
+  content_view:
+    id: 1
+    name: Default Organization View
+  content_view_version:
+    content_view_id: 1
+    id: 1
+    name: Default Organization View 1.0
+  content_view_versions:
+  - content_view_id: 12
+    content_view_name: RHEL810_CV
+    id: 28
+    version: '1.0'
+  - content_view_id: 13
+    content_view_name: RHEL7_LEAPP_CCV
+    id: 54
+    version: '3.0'
+  description: null
+  docker_upstream_name: null
+  filters: []
+  full_gpg_key_path: null
+  full_path: https://sat.ofam.dev/pulp/content/My_Organization/Library/content/dist/rhel8/8.10/x86_64/baseos/os/
+  generic_remote_options: null
+  id: 136
+  kt_environment:
+    id: 1
+    name: Library
+  label: Red_Hat_Enterprise_Linux_8_for_x86_64_-_BaseOS_RPMs_8_10
+  last_sync: null
+  last_sync_words: 8 months
+  library_instance_id: null
+  major: 8
+  minor: '8.10'
+  mirroring_policy: mirror_complete
+  name: Red Hat Enterprise Linux 8 for x86_64 - BaseOS RPMs 8.10
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  os_versions: null
+  product:
+    cp_id: '479'
+    id: 6
+    name: Red Hat Enterprise Linux for x86_64
+    orphaned: false
+    redhat: true
+    sync_plan: null
+  publication_href: /pulp/api/v3/publications/rpm/rpm/019945b9-ee24-7456-ade0-f59221768a29/
+  relative_path: My_Organization/Library/content/dist/rhel8/8.10/x86_64/baseos/os
+  remote_href: /pulp/api/v3/remotes/rpm/rpm/01903cb2-9994-7f79-94f9-fdc71dfed6fa/
+  url: https://cdn.redhat.com/content/dist/rhel8/8.10/x86_64/baseos/os
+  version_href: /pulp/api/v3/repositories/rpm/rpm/01903cb2-9a4d-7b6d-a48f-9c595c0b6cc5/versions/3/
+- arch: noarch
+  backend_identifier: 18220525-b72e-45bc-9285-fff91e3a8d51
+  container_repository_name: null
+  content_counts:
+    erratum: 1785
+    module_stream: 0
+    package_group: 35
+    rpm: 14498
+    srpm: 0
+  content_id: '7416'
+  content_label: rhel-8-for-x86_64-baseos-rpms
+  content_type: yum
+  content_view:
+    id: 1
+    name: Default Organization View
+  content_view_version:
+    content_view_id: 1
+    id: 1
+    name: Default Organization View 1.0
+  content_view_versions: []
+  description: null
+  docker_upstream_name: null
+  filters: []
+  full_gpg_key_path: null
+  full_path: https://sat.ofam.dev/pulp/content/My_Organization/Library/content/dist/rhel8/8.8/x86_64/baseos/os/
+  generic_remote_options: null
+  id: 38
+  kt_environment:
+    id: 1
+    name: Library
+  label: Red_Hat_Enterprise_Linux_8_for_x86_64_-_BaseOS_RPMs_8_8
+  last_sync: null
+  last_sync_words: about 2 years
+  library_instance_id: null
+  major: 8
+  minor: '8.8'
+  mirroring_policy: mirror_complete
+  name: Red Hat Enterprise Linux 8 for x86_64 - BaseOS RPMs 8.8
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  os_versions: null
+  product:
+    cp_id: '479'
+    id: 6
+    name: Red Hat Enterprise Linux for x86_64
+    orphaned: false
+    redhat: true
+    sync_plan: null
+  publication_href: /pulp/api/v3/publications/rpm/rpm/910e3ecc-ea48-4d8e-af81-c9fa1d563575/
+  relative_path: My_Organization/Library/content/dist/rhel8/8.8/x86_64/baseos/os
+  remote_href: /pulp/api/v3/remotes/rpm/rpm/1636760b-8b0c-43b6-9d96-01e400aaf3fb/
+  url: https://cdn.redhat.com/content/dist/rhel8/8.8/x86_64/baseos/os
+  version_href: /pulp/api/v3/repositories/rpm/rpm/47e396de-d1a9-4a6f-9ebb-96336bcb0656/versions/3/
+- arch: noarch
+  backend_identifier: 64aac71c-1046-4600-8a32-4cd47cebcc42
+  container_repository_name: null
+  content_counts:
+    erratum: 5860
+    module_stream: 123
+    package_group: 63
+    rpm: 31063
+    srpm: 0
+  content_id: '11055'
+  content_label: rhel-9-for-x86_64-appstream-rpms
+  content_type: yum
+  content_view:
+    id: 1
+    name: Default Organization View
+  content_view_version:
+    content_view_id: 1
+    id: 1
+    name: Default Organization View 1.0
+  content_view_versions:
+  - content_view_id: 4
+    content_view_name: RHEL9_CV
+    id: 58
+    version: '7.0'
+  - content_view_id: 11
+    content_view_name: RHEL9_AAP24_CCV
+    id: 63
+    version: '8.0'
+  - content_view_id: 20
+    content_view_name: RHEL9_AAP25_CCV
+    id: 65
+    version: '1.0'
+  description: null
+  docker_upstream_name: null
+  filters: []
+  full_gpg_key_path: null
+  full_path: https://sat.ofam.dev/pulp/content/My_Organization/Library/content/dist/rhel9/9/x86_64/appstream/os/
+  generic_remote_options: null
+  id: 5
+  kt_environment:
+    id: 1
+    name: Library
+  label: Red_Hat_Enterprise_Linux_9_for_x86_64_-_AppStream_RPMs_9
+  last_sync: null
+  last_sync_words: 2 months
+  library_instance_id: null
+  major: 9
+  minor: '9'
+  mirroring_policy: mirror_complete
+  name: Red Hat Enterprise Linux 9 for x86_64 - AppStream RPMs 9
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  os_versions: null
+  product:
+    cp_id: '479'
+    id: 6
+    name: Red Hat Enterprise Linux for x86_64
+    orphaned: false
+    redhat: true
+    sync_plan: null
+  publication_href: /pulp/api/v3/publications/rpm/rpm/019cfeb2-a5b3-704f-a912-979d6a466faf/
+  relative_path: My_Organization/Library/content/dist/rhel9/9/x86_64/appstream/os
+  remote_href: /pulp/api/v3/remotes/rpm/rpm/1a84d06f-6d76-4329-bab4-e90aa448d595/
+  url: https://cdn.redhat.com/content/dist/rhel9/9/x86_64/appstream/os
+  version_href: /pulp/api/v3/repositories/rpm/rpm/09fd03b3-385f-488a-b5ac-18a03d63d557/versions/10/
+- arch: noarch
+  backend_identifier: ee48b079-ca39-45cc-be3e-44cef6024974
+  container_repository_name: null
+  content_counts:
+    erratum: 3906
+    module_stream: 40
+    package_group: 63
+    rpm: 18205
+    srpm: 0
+  content_id: '11055'
+  content_label: rhel-9-for-x86_64-appstream-rpms
+  content_type: yum
+  content_view:
+    id: 1
+    name: Default Organization View
+  content_view_version:
+    content_view_id: 1
+    id: 1
+    name: Default Organization View 1.0
+  content_view_versions: []
+  description: null
+  docker_upstream_name: null
+  filters: []
+  full_gpg_key_path: null
+  full_path: https://sat.ofam.dev/pulp/content/My_Organization/Library/content/dist/rhel9/9.4/x86_64/appstream/os/
+  generic_remote_options: null
+  id: 155
+  kt_environment:
+    id: 1
+    name: Library
+  label: Red_Hat_Enterprise_Linux_9_for_x86_64_-_AppStream_RPMs_9_4
+  last_sync: null
+  last_sync_words: almost 2 years
+  library_instance_id: null
+  major: 9
+  minor: '9.4'
+  mirroring_policy: mirror_complete
+  name: Red Hat Enterprise Linux 9 for x86_64 - AppStream RPMs 9.4
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  os_versions: null
+  product:
+    cp_id: '479'
+    id: 6
+    name: Red Hat Enterprise Linux for x86_64
+    orphaned: false
+    redhat: true
+    sync_plan: null
+  publication_href: /pulp/api/v3/publications/rpm/rpm/0190c25f-1439-7b90-9adb-f2a6ebdd7483/
+  relative_path: My_Organization/Library/content/dist/rhel9/9.4/x86_64/appstream/os
+  remote_href: /pulp/api/v3/remotes/rpm/rpm/01904713-a7f6-7d8d-b214-9550ae058531/
+  url: https://cdn.redhat.com/content/dist/rhel9/9.4/x86_64/appstream/os
+  version_href: /pulp/api/v3/repositories/rpm/rpm/01904713-a8a1-7ef3-bfd4-3bfd2df1e51a/versions/2/
+- arch: noarch
+  backend_identifier: 55278ae7-5f2c-43a7-ab57-4126070e6069
+  container_repository_name: null
+  content_counts:
+    erratum: 5199
+    module_stream: 93
+    package_group: 63
+    rpm: 26870
+    srpm: 0
+  content_id: '11055'
+  content_label: rhel-9-for-x86_64-appstream-rpms
+  content_type: yum
+  content_view:
+    id: 1
+    name: Default Organization View
+  content_view_version:
+    content_view_id: 1
+    id: 1
+    name: Default Organization View 1.0
+  content_view_versions:
+  - content_view_id: 17
+    content_view_name: RHEL96_CV
+    id: 45
+    version: '1.0'
+  - content_view_id: 15
+    content_view_name: RHEL8_LEAPP_CCV
+    id: 56
+    version: '7.0'
+  description: null
+  docker_upstream_name: null
+  filters: []
+  full_gpg_key_path: null
+  full_path: https://sat.ofam.dev/pulp/content/My_Organization/Library/content/dist/rhel9/9.6/x86_64/appstream/os/
+  generic_remote_options: null
+  id: 230
+  kt_environment:
+    id: 1
+    name: Library
+  label: Red_Hat_Enterprise_Linux_9_for_x86_64_-_AppStream_RPMs_9_6
+  last_sync: null
+  last_sync_words: 8 months
+  library_instance_id: null
+  major: 9
+  minor: '9.6'
+  mirroring_policy: mirror_complete
+  name: Red Hat Enterprise Linux 9 for x86_64 - AppStream RPMs 9.6
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  os_versions: null
+  product:
+    cp_id: '479'
+    id: 6
+    name: Red Hat Enterprise Linux for x86_64
+    orphaned: false
+    redhat: true
+    sync_plan: null
+  publication_href: /pulp/api/v3/publications/rpm/rpm/019945c6-b51f-7621-89fa-64177e9854bd/
+  relative_path: My_Organization/Library/content/dist/rhel9/9.6/x86_64/appstream/os
+  remote_href: /pulp/api/v3/remotes/rpm/rpm/019945c0-3fd0-7c88-8ae5-b7bbb4557775/
+  url: https://cdn.redhat.com/content/dist/rhel9/9.6/x86_64/appstream/os
+  version_href: /pulp/api/v3/repositories/rpm/rpm/019945c0-40b0-76cb-924b-0746b3fe7c85/versions/1/
+- arch: noarch
+  backend_identifier: b7cf6b45-4332-426a-852e-25894d2a0431
+  container_repository_name: null
+  content_counts:
+    erratum: 1878
+    module_stream: 0
+    package_group: 34
+    rpm: 13402
+    srpm: 0
+  content_id: '11049'
+  content_label: rhel-9-for-x86_64-baseos-rpms
+  content_type: yum
+  content_view:
+    id: 1
+    name: Default Organization View
+  content_view_version:
+    content_view_id: 1
+    id: 1
+    name: Default Organization View 1.0
+  content_view_versions:
+  - content_view_id: 4
+    content_view_name: RHEL9_CV
+    id: 58
+    version: '7.0'
+  - content_view_id: 11
+    content_view_name: RHEL9_AAP24_CCV
+    id: 63
+    version: '8.0'
+  - content_view_id: 20
+    content_view_name: RHEL9_AAP25_CCV
+    id: 65
+    version: '1.0'
+  description: null
+  docker_upstream_name: null
+  filters: []
+  full_gpg_key_path: null
+  full_path: https://sat.ofam.dev/pulp/content/My_Organization/Library/content/dist/rhel9/9/x86_64/baseos/os/
+  generic_remote_options: null
+  id: 6
+  kt_environment:
+    id: 1
+    name: Library
+  label: Red_Hat_Enterprise_Linux_9_for_x86_64_-_BaseOS_RPMs_9
+  last_sync: null
+  last_sync_words: 2 months
+  library_instance_id: null
+  major: 9
+  minor: '9'
+  mirroring_policy: mirror_complete
+  name: Red Hat Enterprise Linux 9 for x86_64 - BaseOS RPMs 9
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  os_versions: null
+  product:
+    cp_id: '479'
+    id: 6
+    name: Red Hat Enterprise Linux for x86_64
+    orphaned: false
+    redhat: true
+    sync_plan: null
+  publication_href: /pulp/api/v3/publications/rpm/rpm/019cfeb1-73a2-7b8f-a108-17faae9ac971/
+  relative_path: My_Organization/Library/content/dist/rhel9/9/x86_64/baseos/os
+  remote_href: /pulp/api/v3/remotes/rpm/rpm/d739a070-1956-441e-a190-2a5a9320fb20/
+  url: https://cdn.redhat.com/content/dist/rhel9/9/x86_64/baseos/os
+  version_href: /pulp/api/v3/repositories/rpm/rpm/59df8c92-02fd-4010-a052-de7f861d8661/versions/10/
+- arch: noarch
+  backend_identifier: 63a03c8d-e20d-4be7-9d05-05739378eded
+  container_repository_name: null
+  content_counts:
+    erratum: 1182
+    module_stream: 0
+    package_group: 34
+    rpm: 6556
+    srpm: 0
+  content_id: '11049'
+  content_label: rhel-9-for-x86_64-baseos-rpms
+  content_type: yum
+  content_view:
+    id: 1
+    name: Default Organization View
+  content_view_version:
+    content_view_id: 1
+    id: 1
+    name: Default Organization View 1.0
+  content_view_versions: []
+  description: null
+  docker_upstream_name: null
+  filters: []
+  full_gpg_key_path: null
+  full_path: https://sat.ofam.dev/pulp/content/My_Organization/Library/content/dist/rhel9/9.4/x86_64/baseos/os/
+  generic_remote_options: null
+  id: 156
+  kt_environment:
+    id: 1
+    name: Library
+  label: Red_Hat_Enterprise_Linux_9_for_x86_64_-_BaseOS_RPMs_9_4
+  last_sync: null
+  last_sync_words: almost 2 years
+  library_instance_id: null
+  major: 9
+  minor: '9.4'
+  mirroring_policy: mirror_complete
+  name: Red Hat Enterprise Linux 9 for x86_64 - BaseOS RPMs 9.4
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  os_versions: null
+  product:
+    cp_id: '479'
+    id: 6
+    name: Red Hat Enterprise Linux for x86_64
+    orphaned: false
+    redhat: true
+    sync_plan: null
+  publication_href: /pulp/api/v3/publications/rpm/rpm/0190c25e-2328-7be5-b963-346c281c2efd/
+  relative_path: My_Organization/Library/content/dist/rhel9/9.4/x86_64/baseos/os
+  remote_href: /pulp/api/v3/remotes/rpm/rpm/01904713-e465-79ac-bb9c-bf8161824d26/
+  url: https://cdn.redhat.com/content/dist/rhel9/9.4/x86_64/baseos/os
+  version_href: /pulp/api/v3/repositories/rpm/rpm/01904713-e53a-7f1e-a1d3-dc9f263cc3ef/versions/2/
+- arch: noarch
+  backend_identifier: 9e8fef55-5123-4555-a226-54fa7ac4b619
+  container_repository_name: null
+  content_counts:
+    erratum: 1644
+    module_stream: 0
+    package_group: 34
+    rpm: 11242
+    srpm: 0
+  content_id: '11049'
+  content_label: rhel-9-for-x86_64-baseos-rpms
+  content_type: yum
+  content_view:
+    id: 1
+    name: Default Organization View
+  content_view_version:
+    content_view_id: 1
+    id: 1
+    name: Default Organization View 1.0
+  content_view_versions:
+  - content_view_id: 17
+    content_view_name: RHEL96_CV
+    id: 45
+    version: '1.0'
+  - content_view_id: 15
+    content_view_name: RHEL8_LEAPP_CCV
+    id: 56
+    version: '7.0'
+  description: null
+  docker_upstream_name: null
+  filters: []
+  full_gpg_key_path: null
+  full_path: https://sat.ofam.dev/pulp/content/My_Organization/Library/content/dist/rhel9/9.6/x86_64/baseos/os/
+  generic_remote_options: null
+  id: 231
+  kt_environment:
+    id: 1
+    name: Library
+  label: Red_Hat_Enterprise_Linux_9_for_x86_64_-_BaseOS_RPMs_9_6
+  last_sync: null
+  last_sync_words: 8 months
+  library_instance_id: null
+  major: 9
+  minor: '9.6'
+  mirroring_policy: mirror_complete
+  name: Red Hat Enterprise Linux 9 for x86_64 - BaseOS RPMs 9.6
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  os_versions: null
+  product:
+    cp_id: '479'
+    id: 6
+    name: Red Hat Enterprise Linux for x86_64
+    orphaned: false
+    redhat: true
+    sync_plan: null
+  publication_href: /pulp/api/v3/publications/rpm/rpm/019945c5-51bd-7273-be46-3a16b5a67259/
+  relative_path: My_Organization/Library/content/dist/rhel9/9.6/x86_64/baseos/os
+  remote_href: /pulp/api/v3/remotes/rpm/rpm/019945c0-808a-7b5d-b96b-4d54c9b973ad/
+  url: https://cdn.redhat.com/content/dist/rhel9/9.6/x86_64/baseos/os
+  version_href: /pulp/api/v3/repositories/rpm/rpm/019945c0-8165-79b3-8907-788263206204/versions/1/
