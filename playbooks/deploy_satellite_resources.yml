@@ -1,17 +1,33 @@
 ---
-- name: Deploy Satellite 6.19 Configuration from IaC
+- name: Deploy Satellite Configuration from IaC
   hosts: localhost
   connection: local
   gather_facts: false
+
   vars:
-    sat_host: "https://sat-new.ofam.dev"
+    sat_host: "{{ survey_sat_host }}"
     sat_username: "{{ sat_admin_user }}"
     sat_token: "{{ sat_admin_pat }}"
     validate_certs_flag: false
     import_dir: "../iac-sat-exports"
 
+  collections:
+    - redhat.satellite
+
+  pre_tasks:
+    - name: Validate required variables
+      ansible.builtin.assert:
+        that:
+          - survey_sat_host is defined and survey_sat_host != ''
+          - sat_username is defined and sat_username != ''
+          - sat_token is defined and sat_token != ''
+        fail_msg: "survey_sat_host, sat_admin_user, and sat_admin_pat must be provided"
+
   tasks:
-    # 1. CORE ARCHITECTURE (Orgs/Locs)
+    # ---------------------------------------------------------
+    # 1. CORE ARCHITECTURE — Organizations and Locations
+    # All other resources depend on these existing first.
+    # ---------------------------------------------------------
     - name: Deploy Organizations
       redhat.satellite.organization:
         server_url: "{{ sat_host }}"
@@ -33,7 +49,22 @@
         state: present
       loop: "{{ lookup('file', import_dir + '/locations/locations.yml') | from_yaml }}"
 
-    # 2. IDENTITY & ACCESS (Auth Sources/Users)
+    - name: Deploy Domains
+      redhat.satellite.domain:
+        server_url: "{{ sat_host }}"
+        username: "{{ sat_username }}"
+        password: "{{ sat_token }}"
+        validate_certs: "{{ validate_certs_flag }}"
+        name: "{{ item.name }}"
+        state: present
+      loop: "{{ lookup('file', import_dir + '/domains/domains.yml') | from_yaml }}"
+      when: lookup('file', import_dir + '/domains/domains.yml') | from_yaml | length > 0
+
+    # ---------------------------------------------------------
+    # 2. IDENTITY & ACCESS — Auth Sources and Users
+    # Auth sources must exist before users that reference them.
+    # Bind passwords are not exported and must be set manually.
+    # ---------------------------------------------------------
     - name: Deploy LDAP/AD Authentication Sources
       redhat.satellite.auth_source_ldap:
         server_url: "{{ sat_host }}"
@@ -47,7 +78,7 @@
         attr_login: "{{ item.attr_login }}"
         state: present
       loop: "{{ lookup('file', import_dir + '/auth_sources/auth_sources.yml') | from_yaml }}"
-      # Note: Bind password must be manually updated or handled via a secret vault.
+      when: lookup('file', import_dir + '/auth_sources/auth_sources.yml') | from_yaml | length > 0
 
     - name: Deploy Users
       redhat.satellite.user:
@@ -64,7 +95,13 @@
       loop: "{{ lookup('file', import_dir + '/users/users.yml') | from_yaml }}"
       when: item.login != 'admin'
 
-    # 3. CONTENT STRUCTURE (Products/Repos)
+    # ---------------------------------------------------------
+    # 3. CONTENT STRUCTURE — Products and Repositories
+    # Custom products first, then Red Hat repositories.
+    # Red Hat products are created automatically when repositories
+    # are enabled from the manifest; only custom products need
+    # explicit creation (identified by absence of cp_id).
+    # ---------------------------------------------------------
     - name: Deploy Custom Products
       redhat.satellite.product:
         server_url: "{{ sat_host }}"
@@ -76,22 +113,28 @@
         label: "{{ item.label | default(omit) }}"
         state: present
       loop: "{{ lookup('file', import_dir + '/products/products.yml') | from_yaml }}"
-      when: item.cp_id is not defined # Only deploy custom products; RH products come from Manifest.
+      when: item.cp_id is not defined
 
     - name: Enable Red Hat Repositories
+      # Uses content_label (stable CDN identifier) to locate the correct
+      # repository set — more reliable than product name or display name.
       redhat.satellite.repository_set:
         server_url: "{{ sat_host }}"
         username: "{{ sat_username }}"
         password: "{{ sat_token }}"
         validate_certs: "{{ validate_certs_flag }}"
-        name: "{{ item.product.name }}"
         organization: "{{ item.organization.name }}"
-        basearch: "{{ item.basearch | default(omit) }}"
-        releasever: "{{ item.releasever | default(omit) }}"
+        label: "{{ item.content_label }}"
         state: enabled
       loop: "{{ lookup('file', import_dir + '/redhat_repositories/redhat_repositories.yml') | from_yaml }}"
+      when: item.content_label is defined
 
-    # 4. ENVIRONMENT & PROVISIONING (LCEs/Hostgroups/Keys)
+    # ---------------------------------------------------------
+    # 4. ENVIRONMENT & PROVISIONING — LCEs, Activation Keys,
+    #    and Hostgroups
+    # Lifecycle Environments must exist before Activation Keys
+    # that reference them. Library is always present; skip it.
+    # ---------------------------------------------------------
     - name: Deploy Lifecycle Environments
       redhat.satellite.lifecycle_environment:
         server_url: "{{ sat_host }}"
@@ -129,3 +172,34 @@
         location: "{{ item.locations[0].name | default(omit) }}"
         state: present
       loop: "{{ lookup('file', import_dir + '/hostgroups/hostgroups.yml') | from_yaml }}"
+      when: lookup('file', import_dir + '/hostgroups/hostgroups.yml') | from_yaml | length > 0
+
+  post_tasks:
+    - name: Display deployment summary
+      ansible.builtin.debug:
+        msg: |
+          Satellite Configuration Deploy Complete
+          Target: {{ sat_host }}
+          Source: {{ import_dir }}
+
+          Deployed in order:
+            1. Organizations and Locations (core architecture)
+            2. Domains
+            3. LDAP/AD Authentication Sources
+            4. Users (admin skipped — already exists)
+            5. Custom Products
+            6. Red Hat Repositories (enabled from manifest)
+            7. Lifecycle Environments (Library skipped — always present)
+            8. Activation Keys
+            9. Hostgroups
+
+          ACTION REQUIRED:
+            - LDAP/AD bind passwords are not exported. Update auth source
+              bind credentials manually after deployment.
+            - Red Hat subscriptions require a valid manifest to be uploaded
+              to the target Satellite before repositories can sync.
+            - Content Views and Composite Content Views are not deployed
+              by this playbook — publish and promote them manually or
+              via a separate automation after repositories have synced.
+            - Subscription attachments for Activation Keys are not restored —
+              attach subscriptions manually if not using Simple Content Access.
