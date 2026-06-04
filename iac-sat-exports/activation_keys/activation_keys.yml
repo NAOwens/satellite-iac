@@ -1,0 +1,450 @@
+- auto_attach: true
+  content_view:
+    id: 18
+    name: RHEL10_CV
+  content_view_environment_labels: TEST/RHEL10_CV
+  content_view_environments:
+  - content_view:
+      composite: false
+      content_view_default: false
+      content_view_environment_id: 35
+      content_view_version: '2.0'
+      content_view_version_id: 57
+      content_view_version_latest: true
+      id: 18
+      name: RHEL10_CV
+      rolling: false
+    label: TEST/RHEL10_CV
+    lifecycle_environment:
+      id: 2
+      lifecycle_environment_library: false
+      name: TEST
+  content_view_id: 18
+  created_at: 2025-09-15 02:16:03 UTC
+  description: null
+  environment:
+    id: 2
+    name: TEST
+  environment_id: 2
+  host_collections: []
+  id: 11
+  max_hosts: null
+  multi_content_view_environment: false
+  name: RHEL10_AK
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  permissions:
+    destroy_activation_keys: true
+    edit_activation_keys: true
+    view_activation_keys: true
+  products: []
+  purpose_role: null
+  purpose_usage: null
+  release_version: null
+  unlimited_hosts: true
+  updated_at: 2025-09-15 02:16:04 UTC
+  usage_count: 0
+  user_id: 4
+- auto_attach: true
+  content_view:
+    id: 9
+    name: RHEL6_CV
+  content_view_environment_labels: TEST/RHEL6_CV
+  content_view_environments:
+  - content_view:
+      composite: false
+      content_view_default: false
+      content_view_environment_id: 15
+      content_view_version: '1.0'
+      content_view_version_id: 8
+      content_view_version_latest: true
+      id: 9
+      name: RHEL6_CV
+      rolling: false
+    label: TEST/RHEL6_CV
+    lifecycle_environment:
+      id: 2
+      lifecycle_environment_library: false
+      name: TEST
+  content_view_id: 9
+  created_at: 2023-10-02 01:07:00 UTC
+  description: null
+  environment:
+    id: 2
+    name: TEST
+  environment_id: 2
+  host_collections: []
+  id: 6
+  max_hosts: null
+  multi_content_view_environment: false
+  name: RHEL6_AK
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  permissions:
+    destroy_activation_keys: true
+    edit_activation_keys: true
+    view_activation_keys: true
+  products: []
+  purpose_role: null
+  purpose_usage: null
+  release_version: null
+  unlimited_hosts: true
+  updated_at: 2023-10-02 01:07:01 UTC
+  usage_count: 0
+  user_id: 4
+- auto_attach: true
+  content_view:
+    id: 3
+    name: RHEL7_CV
+  content_view_environment_labels: TEST/RHEL7_CV
+  content_view_environments:
+  - content_view:
+      composite: false
+      content_view_default: false
+      content_view_environment_id: 5
+      content_view_version: '5.0'
+      content_view_version_id: 53
+      content_view_version_latest: true
+      id: 3
+      name: RHEL7_CV
+      rolling: false
+    label: TEST/RHEL7_CV
+    lifecycle_environment:
+      id: 2
+      lifecycle_environment_library: false
+      name: TEST
+  content_view_id: 3
+  created_at: 2023-09-02 20:43:24 UTC
+  description: null
+  environment:
+    id: 2
+    name: TEST
+  environment_id: 2
+  host_collections: []
+  id: 1
+  max_hosts: null
+  multi_content_view_environment: false
+  name: RHEL7_AK
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  permissions:
+    destroy_activation_keys: true
+    edit_activation_keys: true
+    view_activation_keys: true
+  products: []
+  purpose_role: Red Hat Enterprise Linux Server
+  purpose_usage: Development/Test
+  release_version: null
+  unlimited_hosts: true
+  updated_at: 2023-09-02 20:44:27 UTC
+  usage_count: 1
+  user_id: 4
+- auto_attach: true
+  content_view:
+    id: 13
+    name: RHEL7_LEAPP_CCV
+  content_view_environment_labels: TEST/RHEL7_LEAPP_CCV
+  content_view_environments:
+  - content_view:
+      composite: true
+      content_view_default: false
+      content_view_environment_id: 25
+      content_view_version: '3.0'
+      content_view_version_id: 54
+      content_view_version_latest: true
+      id: 13
+      name: RHEL7_LEAPP_CCV
+      rolling: false
+    label: TEST/RHEL7_LEAPP_CCV
+    lifecycle_environment:
+      id: 2
+      lifecycle_environment_library: false
+      name: TEST
+  content_view_id: 13
+  created_at: 2024-06-22 21:14:00 UTC
+  description: null
+  environment:
+    id: 2
+    name: TEST
+  environment_id: 2
+  host_collections: []
+  id: 8
+  max_hosts: null
+  multi_content_view_environment: false
+  name: RHEL7_LEAPP_AK
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  permissions:
+    destroy_activation_keys: true
+    edit_activation_keys: true
+    view_activation_keys: true
+  products: []
+  purpose_role: null
+  purpose_usage: null
+  release_version: null
+  unlimited_hosts: true
+  updated_at: 2024-06-22 21:14:00 UTC
+  usage_count: 0
+  user_id: 4
+- auto_attach: true
+  content_view:
+    id: 2
+    name: RHEL8_CV
+  content_view_environment_labels: TEST/RHEL8_CV
+  content_view_environments:
+  - content_view:
+      composite: false
+      content_view_default: false
+      content_view_environment_id: 3
+      content_view_version: '10.0'
+      content_view_version_id: 60
+      content_view_version_latest: true
+      id: 2
+      name: RHEL8_CV
+      rolling: false
+    label: TEST/RHEL8_CV
+    lifecycle_environment:
+      id: 2
+      lifecycle_environment_library: false
+      name: TEST
+  content_view_id: 2
+  created_at: 2023-09-02 20:45:52 UTC
+  description: null
+  environment:
+    id: 2
+    name: TEST
+  environment_id: 2
+  host_collections: []
+  id: 2
+  max_hosts: null
+  multi_content_view_environment: false
+  name: RHEL8_AK
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  permissions:
+    destroy_activation_keys: true
+    edit_activation_keys: true
+    view_activation_keys: true
+  products: []
+  purpose_role: Red Hat Enterprise Linux Server
+  purpose_usage: Development/Test
+  release_version: null
+  unlimited_hosts: true
+  updated_at: 2023-09-02 20:46:11 UTC
+  usage_count: 2
+  user_id: 4
+- auto_attach: true
+  content_view:
+    id: 15
+    name: RHEL8_LEAPP_CCV
+  content_view_environment_labels: TEST/RHEL8_LEAPP_CCV
+  content_view_environments:
+  - content_view:
+      composite: true
+      content_view_default: false
+      content_view_environment_id: 29
+      content_view_version: '7.0'
+      content_view_version_id: 56
+      content_view_version_latest: true
+      id: 15
+      name: RHEL8_LEAPP_CCV
+      rolling: false
+    label: TEST/RHEL8_LEAPP_CCV
+    lifecycle_environment:
+      id: 2
+      lifecycle_environment_library: false
+      name: TEST
+  content_view_id: 15
+  created_at: 2024-06-23 22:03:37 UTC
+  description: null
+  environment:
+    id: 2
+    name: TEST
+  environment_id: 2
+  host_collections: []
+  id: 9
+  max_hosts: null
+  multi_content_view_environment: false
+  name: RHEL8_LEAPP_AK
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  permissions:
+    destroy_activation_keys: true
+    edit_activation_keys: true
+    view_activation_keys: true
+  products: []
+  purpose_role: null
+  purpose_usage: null
+  release_version: null
+  unlimited_hosts: true
+  updated_at: 2024-06-23 22:03:37 UTC
+  usage_count: 1
+  user_id: 4
+- auto_attach: true
+  content_view:
+    id: 11
+    name: RHEL9_AAP24_CCV
+  content_view_environment_labels: TEST/RHEL9_AAP24_CCV
+  content_view_environments:
+  - content_view:
+      composite: true
+      content_view_default: false
+      content_view_environment_id: 19
+      content_view_version: '8.0'
+      content_view_version_id: 63
+      content_view_version_latest: true
+      id: 11
+      name: RHEL9_AAP24_CCV
+      rolling: false
+    label: TEST/RHEL9_AAP24_CCV
+    lifecycle_environment:
+      id: 2
+      lifecycle_environment_library: false
+      name: TEST
+  content_view_id: 11
+  created_at: 2023-10-31 01:58:04 UTC
+  description: null
+  environment:
+    id: 2
+    name: TEST
+  environment_id: 2
+  host_collections: []
+  id: 7
+  max_hosts: null
+  multi_content_view_environment: false
+  name: RHEL9_AAP24_AK
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  permissions:
+    destroy_activation_keys: true
+    edit_activation_keys: true
+    view_activation_keys: true
+  products: []
+  purpose_role: null
+  purpose_usage: null
+  release_version: null
+  unlimited_hosts: true
+  updated_at: 2023-10-31 01:58:04 UTC
+  usage_count: 0
+  user_id: 4
+- auto_attach: true
+  content_view:
+    id: 20
+    name: RHEL9_AAP25_CCV
+  content_view_environment_labels: TEST/RHEL9_AAP25_CCV
+  content_view_environments:
+  - content_view:
+      composite: true
+      content_view_default: false
+      content_view_environment_id: 41
+      content_view_version: '1.0'
+      content_view_version_id: 65
+      content_view_version_latest: true
+      id: 20
+      name: RHEL9_AAP25_CCV
+      rolling: false
+    label: TEST/RHEL9_AAP25_CCV
+    lifecycle_environment:
+      id: 2
+      lifecycle_environment_library: false
+      name: TEST
+  content_view_id: 20
+  created_at: 2026-03-24 03:39:09 UTC
+  description: null
+  environment:
+    id: 2
+    name: TEST
+  environment_id: 2
+  host_collections: []
+  id: 12
+  max_hosts: null
+  multi_content_view_environment: false
+  name: RHEL9_AAP25_AK
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  permissions:
+    destroy_activation_keys: true
+    edit_activation_keys: true
+    view_activation_keys: true
+  products: []
+  purpose_role: null
+  purpose_usage: null
+  release_version: null
+  unlimited_hosts: true
+  updated_at: 2026-03-24 03:39:09 UTC
+  usage_count: 1
+  user_id: 4
+- auto_attach: true
+  content_view:
+    id: 4
+    name: RHEL9_CV
+  content_view_environment_labels: TEST/RHEL9_CV
+  content_view_environments:
+  - content_view:
+      composite: false
+      content_view_default: false
+      content_view_environment_id: 7
+      content_view_version: '7.0'
+      content_view_version_id: 58
+      content_view_version_latest: true
+      id: 4
+      name: RHEL9_CV
+      rolling: false
+    label: TEST/RHEL9_CV
+    lifecycle_environment:
+      id: 2
+      lifecycle_environment_library: false
+      name: TEST
+  content_view_id: 4
+  created_at: 2023-09-02 20:48:07 UTC
+  description: null
+  environment:
+    id: 2
+    name: TEST
+  environment_id: 2
+  host_collections: []
+  id: 3
+  max_hosts: null
+  multi_content_view_environment: false
+  name: RHEL9_AK
+  organization:
+    id: 1
+    label: My_Organization
+    name: My_Organization
+  organization_id: 1
+  permissions:
+    destroy_activation_keys: true
+    edit_activation_keys: true
+    view_activation_keys: true
+  products: []
+  purpose_role: Red Hat Enterprise Linux Server
+  purpose_usage: Development/Test
+  release_version: null
+  unlimited_hosts: true
+  updated_at: 2023-09-02 20:48:22 UTC
+  usage_count: 2
+  user_id: 4

@@ -1,0 +1,32 @@
+- account: adsatellite@adlab.local
+  attr_firstname: givenName
+  attr_lastname: sn
+  attr_login: sAMAccountName
+  attr_mail: mail
+  attr_photo: jpegPhoto
+  base_dn: CN=Users,DC=ADlab,DC=local
+  created_at: 2024-08-11 00:59:52 UTC
+  groups_base: CN=Users,DC=ADlab,DC=local
+  host: win2022.ofam.dev
+  id: 6
+  ldap_filter: ''
+  ldap_group_membership: null
+  locations:
+  - description: null
+    id: 2
+    name: My_Location
+    title: My_Location
+  name: win2022 adlab.local
+  onthefly_register: true
+  organizations:
+  - description: ''
+    id: 1
+    name: My_Organization
+    title: My_Organization
+  port: 389
+  server_type: active_directory
+  tls: false
+  type: AuthSourceLdap
+  updated_at: 2024-08-11 00:59:52 UTC
+  use_netgroups: false
+  usergroup_sync: true
