@@ -130,7 +130,62 @@
       when: item.content_label is defined
 
     # ---------------------------------------------------------
-    # 4. ENVIRONMENT & PROVISIONING — LCEs, Activation Keys,
+    # 4. CONTENT VIEWS AND COMPOSITE CONTENT VIEWS
+    # Regular CVs must exist before CCVs that reference them
+    # as components. Both must exist before Activation Keys
+    # that reference a content_view by name.
+    # Regular CVs are deployed first with their repository
+    # assignments. CCVs are deployed after with latest=true
+    # for all components (specific version pinning requires
+    # a published version to exist, which needs a manual
+    # publish step after repos sync).
+    # Filters are exported to content_views/content_view_filters.yml
+    # for reference but must be applied manually after deployment.
+    # ---------------------------------------------------------
+    - name: Load Content Views
+      ansible.builtin.set_fact:
+        all_cvs: "{{ lookup('file', import_dir + '/content_views/content_views.yml') | from_yaml }}"
+
+    - name: Deploy regular Content Views
+      redhat.satellite.content_view:
+        server_url: "{{ sat_host }}"
+        username: "{{ sat_username }}"
+        password: "{{ sat_token }}"
+        validate_certs: "{{ validate_certs_flag }}"
+        name: "{{ item.name }}"
+        organization: "{{ item.organization.name }}"
+        repositories: >-
+          {{
+            item.repositories | default([])
+            | json_query('[].{name: name, product: product.name}')
+          }}
+        state: present
+      loop: "{{ all_cvs | rejectattr('composite', 'equalto', true) | list }}"
+      when: all_cvs | length > 0
+
+    - name: Deploy Composite Content Views
+      redhat.satellite.content_view:
+        server_url: "{{ sat_host }}"
+        username: "{{ sat_username }}"
+        password: "{{ sat_token }}"
+        validate_certs: "{{ validate_certs_flag }}"
+        name: "{{ item.name }}"
+        organization: "{{ item.organization.name }}"
+        composite: true
+        auto_publish: "{{ item.auto_publish | default(false) }}"
+        components: >-
+          {{
+            item.components | default([])
+            | json_query('[].{content_view: content_view_version.content_view.name}')
+            | map('combine', {'latest': true})
+            | list
+          }}
+        state: present
+      loop: "{{ all_cvs | selectattr('composite', 'equalto', true) | list }}"
+      when: all_cvs | length > 0
+
+    # ---------------------------------------------------------
+    # 5. ENVIRONMENT & PROVISIONING — LCEs, Activation Keys,
     #    and Hostgroups
     # Lifecycle Environments must exist before Activation Keys
     # that reference them. Library is always present; skip it.
@@ -189,17 +244,22 @@
             4. Users (admin skipped — already exists)
             5. Custom Products
             6. Red Hat Repositories (enabled from manifest)
-            7. Lifecycle Environments (Library skipped — always present)
-            8. Activation Keys
-            9. Hostgroups
+            7. Regular Content Views (repository assignments restored)
+            8. Composite Content Views (components set to latest=true)
+            9. Lifecycle Environments (Library skipped — always present)
+            10. Activation Keys
+            11. Hostgroups
 
           ACTION REQUIRED:
             - LDAP/AD bind passwords are not exported. Update auth source
               bind credentials manually after deployment.
             - Red Hat subscriptions require a valid manifest to be uploaded
               to the target Satellite before repositories can sync.
-            - Content Views and Composite Content Views are not deployed
-              by this playbook — publish and promote them manually or
-              via a separate automation after repositories have synced.
+            - Content View filters are exported to
+              content_views/content_view_filters.yml for reference but must
+              be re-applied manually — see that file for filter definitions.
+            - Publish and promote Content Views after repositories have synced.
+              CCV components are set to latest=true; specific version pinning
+              can be reconfigured after publishing.
             - Subscription attachments for Activation Keys are not restored —
               attach subscriptions manually if not using Simple Content Access.

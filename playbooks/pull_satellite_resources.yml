@@ -49,6 +49,7 @@
         - subscriptions
         - redhat_repositories
         - products
+        - content_views
         - sync_status
         - auth_sources
         - users
@@ -240,7 +241,63 @@
         dest: "{{ export_dir }}/products/products.yml"
 
     # ---------------------------------------------------------
-    # 10. REPOSITORY SYNC STATUS (derived from repository data already fetched)
+    # 10. CONTENT VIEWS AND COMPOSITE CONTENT VIEWS
+    # Fetched per organization. The default organization view
+    # (default: true) is excluded — it cannot be managed and
+    # is always present on every Satellite.
+    # Filters are fetched per CV via a separate API call.
+    # ---------------------------------------------------------
+    - name: Fetch Content Views from Satellite
+      ansible.builtin.uri:
+        url: "{{ sat_host }}/katello/api/v2/content_views?per_page=1000&organization_id={{ item.id }}&nondefault=true"
+        method: GET
+        url_username: "{{ sat_username }}"
+        url_password: "{{ sat_token }}"
+        force_basic_auth: true
+        validate_certs: "{{ validate_certs_flag }}"
+        return_content: true
+      register: sat_cv_results
+      loop: "{{ sat_orgs.json.results }}"
+      loop_control:
+        label: "{{ item.name }}"
+
+    - name: Build combined Content View list
+      ansible.builtin.set_fact:
+        all_content_views: >-
+          {{
+            sat_cv_results.results
+            | map(attribute='json.results')
+            | flatten
+            | rejectattr('default', 'equalto', true)
+            | list
+          }}
+
+    - name: Save Content Views to YAML
+      ansible.builtin.copy:
+        content: "{{ all_content_views | to_nice_yaml(indent=2) }}"
+        dest: "{{ export_dir }}/content_views/content_views.yml"
+
+    - name: Fetch Content View Filters
+      ansible.builtin.uri:
+        url: "{{ sat_host }}/katello/api/v2/content_views/{{ item.id }}/filters?per_page=1000"
+        method: GET
+        url_username: "{{ sat_username }}"
+        url_password: "{{ sat_token }}"
+        force_basic_auth: true
+        validate_certs: "{{ validate_certs_flag }}"
+        return_content: true
+      register: sat_cv_filter_results
+      loop: "{{ all_content_views }}"
+      loop_control:
+        label: "{{ item.name }}"
+
+    - name: Save Content View Filters to YAML
+      ansible.builtin.copy:
+        content: "{{ sat_cv_filter_results.results | map(attribute='json.results') | flatten | to_nice_yaml(indent=2) }}"
+        dest: "{{ export_dir }}/content_views/content_view_filters.yml"
+
+    # ---------------------------------------------------------
+    # 11. REPOSITORY SYNC STATUS (derived from repository data already fetched)
     # ---------------------------------------------------------
     - name: Save Sync Status to YAML
       ansible.builtin.copy:
@@ -260,7 +317,7 @@
         dest: "{{ export_dir }}/sync_status/sync_status.yml"
 
     # ---------------------------------------------------------
-    # 11. AUTHENTICATION SOURCES (LDAP/AD)
+    # 12. AUTHENTICATION SOURCES (LDAP/AD)
     # ---------------------------------------------------------
     - name: Fetch Authentication Sources from Satellite
       ansible.builtin.uri:
@@ -279,7 +336,7 @@
         dest: "{{ export_dir }}/auth_sources/auth_sources.yml"
     
     # ---------------------------------------------------------
-    # 12. USERS (Foreman API)
+    # 13. USERS (Foreman API)
     # ---------------------------------------------------------
     - name: Fetch Users from Satellite
       ansible.builtin.uri:
@@ -351,6 +408,9 @@
           - Subscriptions: {{ sat_subs_results.results | map(attribute='json.results') | flatten | length }}
           - Enabled Red Hat Repositories: {{ sat_repo_results.results | map(attribute='json.results') | flatten | length }}
           - Products: {{ sat_product_results.results | map(attribute='json.results') | flatten | length }}
+          - Content Views: {{ all_content_views | rejectattr('composite', 'equalto', true) | list | length }}
+          - Composite Content Views: {{ all_content_views | selectattr('composite', 'equalto', true) | list | length }}
+          - Content View Filters: {{ sat_cv_filter_results.results | map(attribute='json.results') | flatten | length }}
           - Sync Status Records: {{ sat_repo_results.results | map(attribute='json.results') | flatten | length }}
           - Authentication Sources: {{ sat_auth_sources.json.results | length }}
           - Users: {{ sat_users.json.results | length }}

@@ -30,6 +30,8 @@ Connects to a running Satellite instance and exports its configuration to `iac-s
 | `subscriptions/` | Subscription pools per organization | Katello `/katello/api/v2/organizations/{id}/subscriptions` |
 | `redhat_repositories/` | Enabled Red Hat repositories per organization | Katello `/katello/api/v2/repositories` |
 | `products/` | Products (Red Hat and custom) per organization | Katello `/katello/api/v2/products` |
+| `content_views/content_views.yml` | Regular and Composite Content View definitions, repository assignments, and CCV component relationships | Katello `/katello/api/v2/content_views` |
+| `content_views/content_view_filters.yml` | Filter definitions (package, errata, module stream) per CV — exported for reference | Katello `/katello/api/v2/content_views/{id}/filters` |
 | `sync_status/` | Repository sync status summary (name, product, last sync time) | Derived from repository data |
 | `auth_sources/` | LDAP/AD authentication source configs (no bind passwords) | Foreman `/api/v2/auth_source_ldaps` |
 | `users/` | User accounts | Foreman `/api/v2/users` |
@@ -38,7 +40,8 @@ Connects to a running Satellite instance and exports its configuration to `iac-s
 
 - Passwords (LDAP bind passwords, user passwords)
 - Red Hat subscription manifest (must be uploaded separately)
-- Content Views and Composite Content Views
+- Content View filters (exported as reference YAML but not auto-applied on deploy)
+- Published Content View versions (must be re-published after repos sync)
 - Sync plans and schedules
 - Smart Proxies / Capsule configuration
 - Host records
@@ -78,9 +81,11 @@ Resources are deployed in strict dependency order — each step's prerequisites 
 5. **Users** — `admin` is always skipped (already exists on any Satellite)
 6. **Custom Products** — only non-Red Hat products (identified by absence of `cp_id`); Red Hat products are created automatically when repositories are enabled from the manifest
 7. **Red Hat Repositories** — enabled using `content_label` (the stable CDN identifier) rather than display name, which avoids matching errors when product names contain version strings
-8. **Lifecycle Environments** — `Library` is always skipped (present by default); all others deployed with their `prior` chain preserved
-9. **Activation Keys** — reference Lifecycle Environments and Content Views
-10. **Hostgroups** — reference Organizations and Locations
+8. **Regular Content Views** — created with repository assignments restored; must be published manually after repositories sync
+9. **Composite Content Views** — created with component CVs set to `latest: true`; specific version pinning can be reconfigured after publishing
+10. **Lifecycle Environments** — `Library` is always skipped (present by default); all others deployed with their `prior` chain preserved
+11. **Activation Keys** — reference Lifecycle Environments and Content Views; both must exist first
+12. **Hostgroups** — reference Organizations and Locations
 
 **Required variables:**
 
@@ -105,8 +110,9 @@ After the playbook completes, the following must be done manually before the Sat
 1. **Upload the Red Hat subscription manifest** — required before repositories can sync. Download from `access.redhat.com` and upload via `Content → Subscriptions → Manage Manifest`.
 2. **Update LDAP bind passwords** — auth source bind credentials are not exported. Edit each LDAP auth source and set the bind password.
 3. **Sync repositories** — trigger a sync for all enabled repositories (or configure a sync plan).
-4. **Publish and promote Content Views** — Content Views are not deployed by this playbook. Create, publish, and promote them after repositories have synced.
-5. **Attach subscriptions to Activation Keys** — if not using Simple Content Access (SCA), attach the appropriate subscription pools to each key manually.
+4. **Apply Content View filters** — filters are exported to `content_views/content_view_filters.yml` for reference but are not automatically re-applied. Recreate them via the Satellite UI or additional automation before publishing.
+5. **Publish and promote Content Views** — CVs are created with repository assignments but have no published versions. Publish each CV, then promote through the Lifecycle Environment chain.
+6. **Attach subscriptions to Activation Keys** — if not using Simple Content Access (SCA), attach the appropriate subscription pools to each key manually.
 
 ## Export Structure
 
@@ -116,6 +122,9 @@ iac-sat-exports/
 │   └── activation_keys.yml
 ├── auth_sources/
 │   └── auth_sources.yml
+├── content_views/
+│   ├── content_views.yml                # CVs and CCVs with repo assignments and components
+│   └── content_view_filters.yml        # Filter definitions — reference only, apply manually
 ├── domains/
 │   └── domains.yml
 ├── hostgroups/
